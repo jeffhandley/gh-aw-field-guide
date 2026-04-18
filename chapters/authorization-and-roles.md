@@ -66,26 +66,26 @@ This is why the gh-aw `on.roles:` default of `[admin, maintainer, write]` exists
 
 **Capability matrix.** Assuming the workflow grants the relevant `permissions:` and exposes the relevant safe-output, can a **read-only contributor** (or anonymous fork contributor) cause the listed action by firing each gh-aw trigger?
 
+The triggers are grouped by their security posture — triggers with identical column values are combined.
+
 Legend: ✅ = reachable; ⚠️ = reachable but with caveats; ❌ = not reachable via this trigger; 🛑 = reachable AND the workflow runs with **upstream secrets** (the high-impact pwn vector).
 
-| Action the agent can take | `slash_command` on issue/comment | `slash_command` on own PR (cross-fork) | `issues` (opened/edited) | `issue_comment` (PR comment, cross-fork) | `discussion` / `discussion_comment` | `pull_request` (cross-fork) | `pull_request_target` (cross-fork) |
-|---|---|---|---|---|---|---|---|
-| Post a comment on the triggering item | ✅ | ✅ | ✅ | 🛑 | ✅ | ⚠️ read-only token | 🛑 |
-| Add or remove labels (`add-labels`) | ✅ | ✅ | ✅ | 🛑 | ✅ | ⚠️ | 🛑 |
-| Edit issue/PR title or body (`update-issue`) | ✅ | ✅ | ✅ | 🛑 | ❌ (discussions don't have an analog safe-output) | ⚠️ | 🛑 |
-| Close / reopen issue or PR (`update-issue`) | ✅ | ✅ | ✅ | 🛑 | ❌ | ⚠️ | 🛑 |
-| Edit or delete *existing* comments | ❌ no safe-output for editing/deleting comments | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Create a new issue (`create-issue`) | ✅ | ✅ | ✅ | 🛑 | ✅ | ⚠️ | 🛑 |
-| Create a new pull request (`create-pull-request`) | ✅ | ✅ | ✅ | 🛑 | ✅ | ⚠️ | 🛑 |
-| Push commits to the PR branch (`push-to-pull-request-branch`) | ❌ (no PR context) | ⚠️ only when PR is from same repo, not cross-fork | ❌ | ⚠️ same-repo only | ❌ | ❌ cross-fork is blocked | ⚠️ same-repo only |
-| Edit code on the PR (commit changes) | ❌ | ⚠️ same caveat as push | ❌ | ⚠️ same | ❌ | ❌ | ⚠️ same |
-| Push to the upstream default branch | ❌ unless workflow runs `git push` from a `bash` step (very ill-advised) | same | same | same | same | same | same |
-| Create a discussion (`create-discussion`) | ✅ | ✅ | ✅ | 🛑 | ✅ | ⚠️ | 🛑 |
-| Trigger a downstream `workflow_dispatch` (via `gh workflow run`) | ✅ if `permissions: actions: write` | same | same | 🛑 | same | ⚠️ | 🛑 |
-| Read repository secrets (and exfiltrate via comment) | ✅ — secrets are in the agent's `env`, can be echoed into any output | same | same | 🛑 | same | ❌ no secrets on fork PRs | 🛑 |
-| Approve a pull request | ❌ — a workflow's `GITHUB_TOKEN` cannot approve PRs (GitHub policy) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Merge a pull request | ✅ if `permissions: pull-requests: write, contents: write` and PR is mergeable | same | same | 🛑 | n/a | ⚠️ | 🛑 |
-| Add/remove repo collaborators, change branch protection | ❌ — `GITHUB_TOKEN` lacks admin scopes; requires a separate PAT | same | same | same | same | same | same |
+| Action | `issues`, `discussion`, `slash_command` on issue | `issue_comment` on fork PR, `slash_command` on fork PR | `pull_request` (cross-fork) | `pull_request_target` (cross-fork) |
+|---|---|---|---|---|
+| Post a comment | ✅ | 🛑 | ⚠️ read-only token | 🛑 |
+| Add/remove labels | ✅ | 🛑 | ⚠️ | 🛑 |
+| Edit issue/PR title or body | ✅ | 🛑 | ⚠️ | 🛑 |
+| Close/reopen issue or PR | ✅ | 🛑 | ⚠️ | 🛑 |
+| Edit/delete existing comments | ❌ | ❌ | ❌ | ❌ |
+| Create a new issue | ✅ | 🛑 | ⚠️ | 🛑 |
+| Create a new pull request | ✅ | 🛑 | ⚠️ | 🛑 |
+| Push commits to PR branch | ❌ | ⚠️ same-repo only | ❌ | ⚠️ same-repo only |
+| Create a discussion | ✅ | 🛑 | ⚠️ | 🛑 |
+| Trigger downstream `workflow_dispatch` | ✅ | 🛑 | ⚠️ | 🛑 |
+| Read/exfiltrate secrets | ✅ | 🛑 | ❌ no secrets | 🛑 |
+| Approve a PR | ❌ | ❌ | ❌ | ❌ |
+| Merge a PR | ✅ | 🛑 | ⚠️ | 🛑 |
+| Admin actions (collaborators, branch protection) | ❌ | ❌ | ❌ | ❌ |
 
 **How to read the 🛑 column intersections.** A 🛑 means: a contributor with **only read access** (or none — anonymous fork contributors via PR comments) can, just by typing a `/command` or comment, induce the bot to perform the listed mutation **using the upstream's secrets and write token**. This is the gh-aw-flavored re-statement of the classic "pwn requests" class[^pwn-requests] and is the entire reason `on.roles:` defaults to `[admin, maintainer, write]`.
 
