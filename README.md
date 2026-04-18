@@ -1,4 +1,4 @@
-# GitHub Actions & gh-aw Triggers — Field Guide
+# GitHub Agentic Workflows — Field Guide
 
 A working reference for every trigger usable in traditional GitHub Actions and in **GitHub Agentic Workflows (`gh-aw`)**, with emphasis on the surprises: apparent-vs-actual triggering, the *Approve and run workflows* gate, fork behavior, secrets exposure, concurrency-induced races, role-based authorization, and the read-only-contributor write surface.
 
