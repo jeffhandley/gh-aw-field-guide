@@ -1,3 +1,7 @@
+---
+title: "The "Apparent vs. Actual" Trigger Surface"
+---
+
 [← Previous: The Two Categories of Triggers](trigger-categories.md) | [Table of Contents](../README.md) | [Next: The "Approve and run workflows" Gate →](approve-and-run-gate.md)
 
 # The "Apparent vs. Actual" Trigger Surface

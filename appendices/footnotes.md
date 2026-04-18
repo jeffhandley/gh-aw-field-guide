@@ -1,3 +1,7 @@
+---
+title: "Footnotes"
+---
+
 [← Previous: Appendix A — Trigger-by-Trigger Risk Profile](trigger-risk-profile.md) | [Table of Contents](../README.md) | Next →
 
 # Appendix B: Footnotes

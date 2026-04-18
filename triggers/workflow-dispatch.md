@@ -1,3 +1,7 @@
+---
+title: "workflow_dispatch"
+---
+
 [← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
 
 # `workflow_dispatch`

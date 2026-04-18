@@ -1,3 +1,7 @@
+---
+title: "Triggers"
+---
+
 [← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: `issues` →](../triggers/issue.md)
 
 # Triggers

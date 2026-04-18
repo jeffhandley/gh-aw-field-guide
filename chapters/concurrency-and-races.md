@@ -1,3 +1,7 @@
+---
+title: "Concurrency and Race Conditions"
+---
+
 [← Previous: Operating Within a Fork](operating-in-a-fork.md) | [Table of Contents](../README.md) | [Next: Authorization, Roles, and Read-Only Contributors →](authorization-and-roles.md)
 
 # Concurrency and Race Conditions

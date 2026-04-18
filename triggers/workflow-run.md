@@ -1,3 +1,7 @@
+---
+title: "workflow_run"
+---
+
 [← Previous: `workflow_call`](workflow-call.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
 
 # `workflow_run` ⚠️

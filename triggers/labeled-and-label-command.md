@@ -1,3 +1,7 @@
+---
+title: "labeled and label_command"
+---
+
 [← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
 
 # `pull_request: types: [labeled]` and `label_command:`

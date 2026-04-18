@@ -1,3 +1,7 @@
+---
+title: "Tenets"
+---
+
 [← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Triggers →](triggers.md)
 
 # Tenets

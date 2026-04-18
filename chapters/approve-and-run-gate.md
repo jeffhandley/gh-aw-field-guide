@@ -1,3 +1,7 @@
+---
+title: "The "Approve and run workflows" Gate"
+---
+
 [← Previous: Apparent vs Actual](apparent-vs-actual.md) | [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
 
 # The "Approve and run workflows" Gate 🛑

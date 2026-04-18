@@ -1,3 +1,7 @@
+---
+title: "issues"
+---
+
 [← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: `pull_request` →](pull-request.md)
 
 # `issues`

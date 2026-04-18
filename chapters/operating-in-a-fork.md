@@ -1,3 +1,7 @@
+---
+title: "Operating Within a Fork"
+---
+
 [← Previous: The "Approve and run workflows" Gate](approve-and-run-gate.md) | [Table of Contents](../README.md) | [Next: Concurrency and Race Conditions →](concurrency-and-races.md)
 
 # Operating Within a Fork ⚠️

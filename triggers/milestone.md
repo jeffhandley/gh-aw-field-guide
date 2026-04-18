@@ -1,3 +1,7 @@
+---
+title: "milestone"
+---
+
 [← Previous: `release`](release.md) | [Table of Contents](../README.md) | [Next: `workflow_call` →](workflow-call.md)
 
 # `milestone`

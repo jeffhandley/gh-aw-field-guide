@@ -1,3 +1,7 @@
+---
+title: "release"
+---
+
 [← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
 
 # `release`

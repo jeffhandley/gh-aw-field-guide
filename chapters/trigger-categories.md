@@ -1,3 +1,7 @@
+---
+title: "The Two Categories of Triggers"
+---
+
 [← Previous: `workflow_run`](../triggers/workflow-run.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
 
 # The Two Categories of Triggers

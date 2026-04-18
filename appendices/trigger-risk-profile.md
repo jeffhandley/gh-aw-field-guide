@@ -1,3 +1,7 @@
+---
+title: "Trigger-by-Trigger Risk Profile"
+---
+
 [← Previous: Authorization, Roles, and Read-Only Contributors](../chapters/authorization-and-roles.md) | [Table of Contents](../README.md) | [Next: Appendix B — Footnotes →](footnotes.md)
 
 # Appendix A: Trigger-by-Trigger Risk Profile

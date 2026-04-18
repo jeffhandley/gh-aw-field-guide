@@ -1,3 +1,7 @@
+---
+title: "Authorization, Roles, and Read-Only Contributors"
+---
+
 [← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
 
 # Authorization, Roles, and Read-Only Contributors

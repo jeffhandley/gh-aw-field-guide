@@ -1,3 +1,7 @@
+---
+title: "issue_comment and slash_command"
+---
+
 [← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
 
 # `issue_comment` and `slash_command:`
