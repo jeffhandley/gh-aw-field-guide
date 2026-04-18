@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: The Two Categories of Triggers](trigger-categories.md) | [Table of Contents](../README.md) | [Next: The "Approve and run workflows" Gate →](approve-and-run-gate.md)
+<a href="trigger-categories.md">← Previous: The Two Categories of Triggers</a> | <a href="../README.md">Table of Contents</a> | <a href="approve-and-run-gate.md">Next: The "Approve and run workflows" Gate →</a>
 
 </nav>
 
@@ -35,6 +35,6 @@ The first quote concedes the noise; the second concedes that even narrow matchin
 
 <nav>
 
-[← Previous: The Two Categories of Triggers](trigger-categories.md) | [Table of Contents](../README.md) | [Next: The "Approve and run workflows" Gate →](approve-and-run-gate.md)
+<a href="trigger-categories.md">← Previous: The Two Categories of Triggers</a> | <a href="../README.md">Table of Contents</a> | <a href="approve-and-run-gate.md">Next: The "Approve and run workflows" Gate →</a>
 
 </nav>

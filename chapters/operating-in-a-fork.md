@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: The "Approve and run workflows" Gate](approve-and-run-gate.md) | [Table of Contents](../README.md) | [Next: Concurrency and Race Conditions →](concurrency-and-races.md)
+<a href="approve-and-run-gate.md">← Previous: The "Approve and run workflows" Gate</a> | <a href="../README.md">Table of Contents</a> | <a href="concurrency-and-races.md">Next: Concurrency and Race Conditions →</a>
 
 </nav>
 
@@ -66,6 +66,6 @@ Forking does not give the fork owner any new privileges over the upstream. They 
 
 <nav>
 
-[← Previous: The "Approve and run workflows" Gate](approve-and-run-gate.md) | [Table of Contents](../README.md) | [Next: Concurrency and Race Conditions →](concurrency-and-races.md)
+<a href="approve-and-run-gate.md">← Previous: The "Approve and run workflows" Gate</a> | <a href="../README.md">Table of Contents</a> | <a href="concurrency-and-races.md">Next: Concurrency and Race Conditions →</a>
 
 </nav>

@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `issues`](issue.md) | [Table of Contents](../README.md) | [Next: `pull_request_target` →](pull-request-target.md)
+<a href="issue.md">← Previous: `issues`</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request-target.md">Next: `pull_request_target` →</a>
 
 </nav>
 
@@ -46,6 +46,6 @@
 
 <nav>
 
-[← Previous: `issues`](issue.md) | [Table of Contents](../README.md) | [Next: `pull_request_target` →](pull-request-target.md)
+<a href="issue.md">← Previous: `issues`</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request-target.md">Next: `pull_request_target` →</a>
 
 </nav>

@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `pull_request_target`](pull-request-target.md) | [Table of Contents](../README.md) | [Next: `issue_comment` and `slash_command:` →](comment-and-slash-command.md)
+<a href="pull-request-target.md">← Previous: `pull_request_target`</a> | <a href="../README.md">Table of Contents</a> | <a href="comment-and-slash-command.md">Next: `issue_comment` and `slash_command:` →</a>
 
 </nav>
 
@@ -62,6 +62,6 @@ The PR head SHA changes on every push. Any artifact the workflow created (status
 
 <nav>
 
-[← Previous: `pull_request_target`](pull-request-target.md) | [Table of Contents](../README.md) | [Next: `issue_comment` and `slash_command:` →](comment-and-slash-command.md)
+<a href="pull-request-target.md">← Previous: `pull_request_target`</a> | <a href="../README.md">Table of Contents</a> | <a href="comment-and-slash-command.md">Next: `issue_comment` and `slash_command:` →</a>
 
 </nav>

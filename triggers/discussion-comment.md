@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
+<a href="discussion.md">← Previous: `discussion`</a> | <a href="../README.md">Table of Contents</a> | <a href="labeled-and-label-command.md">Next: `labeled` / `label_command:` →</a>
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
+<a href="discussion.md">← Previous: `discussion`</a> | <a href="../README.md">Table of Contents</a> | <a href="labeled-and-label-command.md">Next: `labeled` / `label_command:` →</a>
 
 </nav>

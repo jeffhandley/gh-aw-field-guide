@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
+<a href="discussion-comment.md">← Previous: `discussion_comment`</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request-review.md">Next: `pull_request_review` →</a>
 
 </nav>
 
@@ -41,6 +41,6 @@
 
 <nav>
 
-[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
+<a href="discussion-comment.md">← Previous: `discussion_comment`</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request-review.md">Next: `pull_request_review` →</a>
 
 </nav>

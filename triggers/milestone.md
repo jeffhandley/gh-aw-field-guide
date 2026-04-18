@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `release`](release.md) | [Table of Contents](../README.md) | [Next: `workflow_call` →](workflow-call.md)
+<a href="release.md">← Previous: `release`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-call.md">Next: `workflow_call` →</a>
 
 </nav>
 
@@ -39,6 +39,6 @@ Deleting a milestone removes it from all assigned issues/PRs, firing `issues.dem
 
 <nav>
 
-[← Previous: `release`](release.md) | [Table of Contents](../README.md) | [Next: `workflow_call` →](workflow-call.md)
+<a href="release.md">← Previous: `release`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-call.md">Next: `workflow_call` →</a>
 
 </nav>

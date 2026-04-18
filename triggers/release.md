@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
+<a href="workflow-dispatch.md">← Previous: `workflow_dispatch`</a> | <a href="../README.md">Table of Contents</a> | <a href="milestone.md">Next: `milestone` →</a>
 
 </nav>
 
@@ -35,6 +35,6 @@
 
 <nav>
 
-[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
+<a href="workflow-dispatch.md">← Previous: `workflow_dispatch`</a> | <a href="../README.md">Table of Contents</a> | <a href="milestone.md">Next: `milestone` →</a>
 
 </nav>

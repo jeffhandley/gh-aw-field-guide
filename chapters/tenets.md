@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Triggers →](triggers.md)
+<a href="../README.md">← Previous: Table of Contents</a> | <a href="../README.md">Table of Contents</a> | <a href="triggers.md">Next: Triggers →</a>
 
 </nav>
 
@@ -42,6 +42,6 @@ The design principles every workflow in this repo must satisfy. Positive framing
 
 <nav>
 
-[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Triggers →](triggers.md)
+<a href="../README.md">← Previous: Table of Contents</a> | <a href="../README.md">Table of Contents</a> | <a href="triggers.md">Next: Triggers →</a>
 
 </nav>

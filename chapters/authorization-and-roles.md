@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
+<a href="concurrency-and-races.md">← Previous: Concurrency and Race Conditions</a> | <a href="../README.md">Table of Contents</a> | <a href="../appendices/trigger-risk-profile.md">Next: Appendix A — Trigger-by-Trigger Risk Profile →</a>
 
 </nav>
 
@@ -103,6 +103,6 @@ Legend: ✅ = reachable; ⚠️ = reachable but with caveats; ❌ = not reachabl
 
 <nav>
 
-[← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
+<a href="concurrency-and-races.md">← Previous: Concurrency and Race Conditions</a> | <a href="../README.md">Table of Contents</a> | <a href="../appendices/trigger-risk-profile.md">Next: Appendix A — Trigger-by-Trigger Risk Profile →</a>
 
 </nav>

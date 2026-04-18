@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
+<a href="push.md">← Previous: `push`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion.md">Next: `discussion` →</a>
 
 </nav>
 
@@ -48,6 +48,6 @@
 
 <nav>
 
-[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
+<a href="push.md">← Previous: `push`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion.md">Next: `discussion` →</a>
 
 </nav>

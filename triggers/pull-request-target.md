@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `pull_request`](pull-request.md) | [Table of Contents](../README.md) | [Next: `push` →](push.md)
+<a href="pull-request.md">← Previous: `pull_request`</a> | <a href="../README.md">Table of Contents</a> | <a href="push.md">Next: `push` →</a>
 
 </nav>
 
@@ -47,6 +47,6 @@ See also: [The "Approve and run workflows" Gate](../chapters/approve-and-run-gat
 
 <nav>
 
-[← Previous: `pull_request`](pull-request.md) | [Table of Contents](../README.md) | [Next: `push` →](push.md)
+<a href="pull-request.md">← Previous: `pull_request`</a> | <a href="../README.md">Table of Contents</a> | <a href="push.md">Next: `push` →</a>
 
 </nav>

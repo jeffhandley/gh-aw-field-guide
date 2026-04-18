@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: Authorization, Roles, and Read-Only Contributors](../chapters/authorization-and-roles.md) | [Table of Contents](../README.md) | [Next: Appendix B — Footnotes →](footnotes.md)
+<a href="../chapters/authorization-and-roles.md">← Previous: Authorization, Roles, and Read-Only Contributors</a> | <a href="../README.md">Table of Contents</a> | <a href="footnotes.md">Next: Appendix B — Footnotes →</a>
 
 </nav>
 
@@ -161,6 +161,6 @@ These either have low headline risk or are irrelevant to agentic workflows in th
 
 <nav>
 
-[← Previous: Authorization, Roles, and Read-Only Contributors](../chapters/authorization-and-roles.md) | [Table of Contents](../README.md) | [Next: Appendix B — Footnotes →](footnotes.md)
+<a href="../chapters/authorization-and-roles.md">← Previous: Authorization, Roles, and Read-Only Contributors</a> | <a href="../README.md">Table of Contents</a> | <a href="footnotes.md">Next: Appendix B — Footnotes →</a>
 
 </nav>

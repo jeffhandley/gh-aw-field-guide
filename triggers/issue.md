@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: `pull_request` →](pull-request.md)
+<a href="../chapters/triggers.md">← Previous: Triggers</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request.md">Next: `pull_request` →</a>
 
 </nav>
 
@@ -37,6 +37,6 @@
 
 <nav>
 
-[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: `pull_request` →](pull-request.md)
+<a href="../chapters/triggers.md">← Previous: Triggers</a> | <a href="../README.md">Table of Contents</a> | <a href="pull-request.md">Next: `pull_request` →</a>
 
 </nav>

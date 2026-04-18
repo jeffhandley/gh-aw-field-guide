@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `milestone`](milestone.md) | [Table of Contents](../README.md) | [Next: `workflow_run` →](workflow-run.md)
+<a href="milestone.md">← Previous: `milestone`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-run.md">Next: `workflow_run` →</a>
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `milestone`](milestone.md) | [Table of Contents](../README.md) | [Next: `workflow_run` →](workflow-run.md)
+<a href="milestone.md">← Previous: `milestone`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-run.md">Next: `workflow_run` →</a>
 
 </nav>

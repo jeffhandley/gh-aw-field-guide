@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `pull_request_review`](pull-request-review.md) | [Table of Contents](../README.md) | [Next: `schedule` →](schedule.md)
+<a href="pull-request-review.md">← Previous: `pull_request_review`</a> | <a href="../README.md">Table of Contents</a> | <a href="schedule.md">Next: `schedule` →</a>
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `pull_request_review`](pull-request-review.md) | [Table of Contents](../README.md) | [Next: `schedule` →](schedule.md)
+<a href="pull-request-review.md">← Previous: `pull_request_review`</a> | <a href="../README.md">Table of Contents</a> | <a href="schedule.md">Next: `schedule` →</a>
 
 </nav>

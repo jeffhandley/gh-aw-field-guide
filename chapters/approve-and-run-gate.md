@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: Apparent vs Actual](apparent-vs-actual.md) | [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
+<a href="apparent-vs-actual.md">← Previous: Apparent vs Actual</a> | <a href="../README.md">Table of Contents</a> | <a href="operating-in-a-fork.md">Next: Operating Within a Fork →</a>
 
 </nav>
 
@@ -55,6 +55,6 @@ The "Approve and run workflows" button looks like a security feature. **Treat it
 
 <nav>
 
-[← Previous: Apparent vs Actual](apparent-vs-actual.md) | [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
+<a href="apparent-vs-actual.md">← Previous: Apparent vs Actual</a> | <a href="../README.md">Table of Contents</a> | <a href="operating-in-a-fork.md">Next: Operating Within a Fork →</a>
 
 </nav>

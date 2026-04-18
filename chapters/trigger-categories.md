@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `workflow_run`](../triggers/workflow-run.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
+<a href="../triggers/workflow-run.md">← Previous: `workflow_run`</a> | <a href="../README.md">Table of Contents</a> | <a href="apparent-vs-actual.md">Next: Apparent vs Actual →</a>
 
 </nav>
 
@@ -88,6 +88,6 @@ gh-aw calls these **"trigger types"** but the docs themselves repeatedly note th
 
 <nav>
 
-[← Previous: `workflow_run`](../triggers/workflow-run.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
+<a href="../triggers/workflow-run.md">← Previous: `workflow_run`</a> | <a href="../README.md">Table of Contents</a> | <a href="apparent-vs-actual.md">Next: Apparent vs Actual →</a>
 
 </nav>

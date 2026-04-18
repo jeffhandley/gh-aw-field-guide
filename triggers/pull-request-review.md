@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review_comment` →](pull-request-review-comment.md)
+[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | <a href="../README.md">Table of Contents</a> | <a href="pull-request-review-comment.md">Next: `pull_request_review_comment` →</a>
 
 </nav>
 
@@ -40,6 +40,6 @@
 
 <nav>
 
-[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review_comment` →](pull-request-review-comment.md)
+[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | <a href="../README.md">Table of Contents</a> | <a href="pull-request-review-comment.md">Next: `pull_request_review_comment` →</a>
 
 </nav>
