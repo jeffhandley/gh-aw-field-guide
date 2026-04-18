@@ -2,7 +2,7 @@
 title: "pull_request"
 ---
 
-[← Previous: `issues`](issue.md) | [Table of Contents](../README.md) | [Next: `pull_request_target` →](pull-request-target.md)
+[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)
 
 # `pull_request`
 
@@ -44,4 +44,4 @@ title: "pull_request"
 
 ---
 
-[← Previous: `issues`](issue.md) | [Table of Contents](../README.md) | [Next: `pull_request_target` →](pull-request-target.md)
+[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)

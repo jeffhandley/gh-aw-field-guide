@@ -2,7 +2,7 @@
 title: "pull_request_review_comment"
 ---
 
-[← Previous: `pull_request_review`](pull-request-review.md) | [Table of Contents](../README.md) | [Next: `schedule` →](schedule.md)
+[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)
 
 # `pull_request_review_comment`
 
@@ -36,4 +36,4 @@ title: "pull_request_review_comment"
 
 ---
 
-[← Previous: `pull_request_review`](pull-request-review.md) | [Table of Contents](../README.md) | [Next: `schedule` →](schedule.md)
+[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)

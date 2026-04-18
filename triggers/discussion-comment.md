@@ -2,7 +2,7 @@
 title: "discussion_comment"
 ---
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
+[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: labeled / label_command: →](labeled-and-label-command.md)
 
 # `discussion_comment`
 
@@ -36,4 +36,4 @@ title: "discussion_comment"
 
 ---
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
+[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: labeled / label_command: →](labeled-and-label-command.md)

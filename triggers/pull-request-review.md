@@ -2,7 +2,7 @@
 title: "pull_request_review"
 ---
 
-[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review_comment` →](pull-request-review-comment.md)
+[← Previous: pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)
 
 # `pull_request_review`
 
@@ -38,4 +38,4 @@ title: "pull_request_review"
 
 ---
 
-[← Previous: `pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review_comment` →](pull-request-review-comment.md)
+[← Previous: pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)

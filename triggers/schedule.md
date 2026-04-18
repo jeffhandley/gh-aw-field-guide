@@ -2,7 +2,7 @@
 title: "schedule"
 ---
 
-[← Previous: `pull_request_review_comment`](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: `workflow_dispatch` →](workflow-dispatch.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: workflow_dispatch →](workflow-dispatch.md)
 
 # `schedule`
 
@@ -37,4 +37,4 @@ title: "schedule"
 
 ---
 
-[← Previous: `pull_request_review_comment`](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: `workflow_dispatch` →](workflow-dispatch.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: workflow_dispatch →](workflow-dispatch.md)

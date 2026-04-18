@@ -2,7 +2,7 @@
 title: "Triggers"
 ---
 
-[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: `issues` →](../triggers/issue.md)
+[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: issues →](../triggers/issue.md)
 
 # Triggers
 
@@ -46,4 +46,4 @@ Additional triggers not covered here (e.g., `branch_protection_rule`, `check_run
 
 ---
 
-[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: `issues` →](../triggers/issue.md)
+[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: issues →](../triggers/issue.md)
