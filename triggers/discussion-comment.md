@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
+[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
+[← Previous: `discussion`](discussion.md) | [Table of Contents](../README.md) | [Next: `labeled` / `label_command:` →](labeled-and-label-command.md)
 
 </nav>

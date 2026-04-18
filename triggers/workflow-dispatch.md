@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
+[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
+[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
 
 </nav>

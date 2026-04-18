@@ -22,20 +22,20 @@ Pages can be read linearly via the `← Prev | TOC | Next →` navigation at the
 7. [Concurrency and Race Conditions](chapters/concurrency-and-races.md) — the non-matching-cancels-matching pathology, the pre-cancellation race.
 8. [Authorization, Roles, and Read-Only Contributors](chapters/authorization-and-roles.md) — `on.roles:` defaults, the read-only / fork-contributor capability matrix.
 
-## Trigger Pages (lifecycle order)
+## Trigger Pages
 
 1. [`issues`](triggers/issue.md) ✅ — `issues.edited` is a privilege-escalation amplifier.
 2. [`pull_request`](triggers/pull-request.md) ⛔ — `closed` ≠ `merged`; the `reopened` time-bomb; the approval-gate problem.
 3. [`pull_request_target`](triggers/pull-request-target.md) ⛔ — the trigger most likely to get a repo pwned.
 4. [`push`](triggers/push.md) ⚠️ — overbroad branch subscription, per-push stacking, force-push semantics.
 5. [`issue_comment` and `slash_command:`](triggers/comment-and-slash-command.md) ⚠️ — no approval gate, broad subscriptions, the `.edited` time-bomb, the slash-command concurrency catastrophe.
-6. [`pull_request: types: [labeled]` and `label_command:`](triggers/labeled-and-label-command.md) ✅ — labels as one-shot RPC, audit-trail noise, idempotency requirement.
-7. [`pull_request_review`](triggers/pull-request-review.md) ⚠️ — "review submitted" ≠ "approved," and the multi-trigger concurrency twist.
-8. [`pull_request_review_comment`](triggers/pull-request-review-comment.md) ⚠️ — the trigger nobody remembers exists.
-9. [`schedule`](triggers/schedule.md) ✅ — the best concurrency story; silent runtime cost growth and soft cron.
-10. [`workflow_dispatch`](triggers/workflow-dispatch.md) ✅ — manual escape hatch that any write-role user can fire against any branch's YAML.
-11. [`discussion`](triggers/discussion.md) ⚠️ — the most-open untrusted-input surface in the GitHub model.
-12. [`discussion_comment`](triggers/discussion-comment.md) ⚠️ — comment-on-your-own-discussion privilege escalation.
+6. [`discussion`](triggers/discussion.md) ⚠️ — the most-open untrusted-input surface in the GitHub model.
+7. [`discussion_comment`](triggers/discussion-comment.md) ⚠️ — comment-on-your-own-discussion privilege escalation.
+8. [`pull_request: types: [labeled]` and `label_command:`](triggers/labeled-and-label-command.md) ✅ — labels as one-shot RPC, audit-trail noise, idempotency requirement.
+9. [`pull_request_review`](triggers/pull-request-review.md) ⚠️ — "review submitted" ≠ "approved," and the multi-trigger concurrency twist.
+10. [`pull_request_review_comment`](triggers/pull-request-review-comment.md) ⚠️ — the trigger nobody remembers exists.
+11. [`schedule`](triggers/schedule.md) ✅ — the best concurrency story; silent runtime cost growth and soft cron.
+12. [`workflow_dispatch`](triggers/workflow-dispatch.md) ✅ — manual escape hatch that any write-role user can fire against any branch's YAML.
 13. [`release`](triggers/release.md) ✅ — post-release automation, artifact publishing, follow-up issues.
 14. [`milestone`](triggers/milestone.md) ✅ — release management; cascade when deleting.
 15. [`workflow_call`](triggers/workflow-call.md) ☢️ — undeclared trust boundary; `secrets: inherit`.

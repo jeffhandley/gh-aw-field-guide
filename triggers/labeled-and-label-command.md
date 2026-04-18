@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `issue_comment` and `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
+[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
 
 </nav>
 
@@ -41,6 +41,6 @@
 
 <nav>
 
-[← Previous: `issue_comment` and `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
+[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `pull_request_review` →](pull-request-review.md)
 
 </nav>

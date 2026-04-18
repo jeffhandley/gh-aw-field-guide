@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `pull_request: types: [labeled]` and `label_command:` →](labeled-and-label-command.md)
+[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
 
 </nav>
 
@@ -48,6 +48,6 @@
 
 <nav>
 
-[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `pull_request: types: [labeled]` and `label_command:` →](labeled-and-label-command.md)
+[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
 
 </nav>

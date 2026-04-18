@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
+[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
 
 </nav>
 
@@ -35,6 +35,6 @@
 
 <nav>
 
-[← Previous: `discussion_comment`](discussion-comment.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
+[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `milestone` →](milestone.md)
 
 </nav>

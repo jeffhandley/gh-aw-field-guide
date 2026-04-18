@@ -1,6 +1,6 @@
 <nav>
 
-[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)
+[← Previous: `issue_comment` / `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)
 
 </nav>
 
@@ -38,6 +38,6 @@
 
 <nav>
 
-[← Previous: `workflow_dispatch`](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)
+[← Previous: `issue_comment` / `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)
 
 </nav>

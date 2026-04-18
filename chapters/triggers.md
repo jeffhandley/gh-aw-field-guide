@@ -21,7 +21,7 @@ Additional triggers not covered here (e.g., `branch_protection_rule`, `check_run
 | ☢️ | **Use with extreme caution** | Runs with full secrets and/or creates undeclared trust boundaries; the failure mode is repo compromise. |
 | ⛔ | **Avoid** | Causes the "Approve and run workflows" button or other structural problems; prefer the recommended alternatives listed on the page. |
 
-## Trigger pages, in lifecycle order
+## Common triggers
 
 | Trigger | | Headline |
 |---|---|---|
@@ -30,13 +30,13 @@ Additional triggers not covered here (e.g., `branch_protection_rule`, `check_run
 | [`pull_request_target`](../triggers/pull-request-target.md) | ⛔ | The trigger most likely to get a repo pwned. |
 | [`push`](../triggers/push.md) | ⚠️ | Overbroad branch subscription; per-push stacking; force-push semantics. |
 | [`issue_comment` / `slash_command:`](../triggers/comment-and-slash-command.md) | ⚠️ | No approval gate; broad subscriptions; the `.edited` time-bomb; concurrency catastrophe. |
+| [`discussion`](../triggers/discussion.md) | ⚠️ | Most-open untrusted-input surface; no approval gate; low visibility. |
+| [`discussion_comment`](../triggers/discussion-comment.md) | ⚠️ | Comment-on-your-own-discussion privilege escalation. |
 | [`labeled` / `label_command:`](../triggers/labeled-and-label-command.md) | ✅ | Labels as one-shot RPC; audit-trail noise; idempotency requirement. |
 | [`pull_request_review`](../triggers/pull-request-review.md) | ⚠️ | "Review submitted" ≠ "approved"; multi-trigger concurrency twist. |
 | [`pull_request_review_comment`](../triggers/pull-request-review-comment.md) | ⚠️ | The trigger nobody remembers exists. |
 | [`schedule`](../triggers/schedule.md) | ✅ | Best concurrency story; silent runtime cost growth; soft cron. |
 | [`workflow_dispatch`](../triggers/workflow-dispatch.md) | ✅ | Manual escape hatch; any write-role user can fire against any branch. |
-| [`discussion`](../triggers/discussion.md) | ⚠️ | Most-open untrusted-input surface; no approval gate; low visibility. |
-| [`discussion_comment`](../triggers/discussion-comment.md) | ⚠️ | Comment-on-your-own-discussion privilege escalation. |
 | [`release`](../triggers/release.md) | ✅ | Post-release automation; artifact publishing; follow-up issues. |
 | [`milestone`](../triggers/milestone.md) | ✅ | Release management; cascade when deleting. |
 | [`workflow_call`](../triggers/workflow-call.md) | ☢️ | Undeclared trust boundary; `secrets: inherit`. |
