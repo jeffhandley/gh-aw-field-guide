@@ -26,7 +26,7 @@ This appendix covers **every** trigger including the ones with no standalone pit
 - **Forks:** Schedules in forks are disabled by default.
 - **Unintended:** Long-running schedules + `stop-after:` mismatch can leave a workflow active longer than intended after a recompile.
 
-## [`push`](../triggers/push-and-synchronize.md)
+## [`push`](../triggers/push.md)
 - **Authz:** Push access required.
 - **Approve gate:** N/A.
 - **Runs:** On every matching push; can be filtered by `branches`, `tags`, `paths`.

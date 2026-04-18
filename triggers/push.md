@@ -4,13 +4,9 @@
 
 </nav>
 
-# `push` and `pull_request.synchronize`
+# `push`
 
-These two are bundled because they're the same underlying activity (a commit lands on a ref) viewed from two angles: `push` from the branch's angle, and `pull_request.synchronize` from a PR's angle. They share the same per-push fan-out problem and the same concurrency trap.
-
----
-
-## `push` — overbroad branch subscription
+### ⚠️ Use with caution
 
 > 🛑 **`push` is one of the highest-volume triggers in the repo and the easiest to subscribe to overbroadly.** A workflow declared as just `on: push` (no `branches:` filter) fires on every push to every branch by anyone with write access — including bot branches, dependency-update branches, codeflow branches, and short-lived feature branches that no one expected the workflow to care about. For an agentic workflow that consumes Copilot tokens per run, the cost blowout is silent until the bill arrives — this is the trigger most likely to turn "it's just a PoC" into a line-item on next month's invoice. The fix is always-explicit `branches:` filters and a narrow subscription that matches the actual workflow intent.
 >
@@ -18,11 +14,34 @@ These two are bundled because they're the same underlying activity (a commit lan
 
 ---
 
-## `pull_request.synchronize` — per-push, not per-PR
+## Scenarios
 
-> 🛑 **`synchronize` fires once per push, not once per PR.** A 50-commit force-push to a PR fires the workflow 50 times — wait, no: a 50-commit *single push* fires it **once** (the event is per push, not per commit). But a *force-push* to rewrite history is still a push, and a *contributor pushing 50 separate times in 30 minutes* is 50 events. Force-push specifically is indistinguishable to the workflow from a regular push — both fire `synchronize` with the new head SHA — so the workflow cannot tell whether the previous commits it already analyzed are still in the tree or have been rewritten away.
->
-> The trade-off is unavoidable: enabling `concurrency.cancel-in-progress: true` solves the per-push stacking but creates the [non-matching-cancels-matching race](../chapters/concurrency-and-races.md) where in-progress useful work gets cancelled by a spam push (or by a sibling event sharing the same group). The cost-vs-correctness tradeoff is unavoidable; it must be made deliberately.
+- CI / build / test on every push to protected branches (with explicit `branches:` filter)
+- Post-merge automation (release tagging, deployment, changelog generation) on `push` to `main`
+- Monorepo selective builds (with `paths:` filters)
+- **Avoid** bare `on: push` without `branches:` — fires on every push to every branch
+
+## Profile
+
+| Dimension | Recommendation |
+|---|---|
+| `on.roles:` | N/A — only write+ users can push. |
+| Activity types | N/A — `push` has no activity types. Always use explicit `branches:` and optionally `paths:`/`tags:` filters. |
+| Concurrency | `${{ github.workflow }}-${{ github.ref }}` with `cancel-in-progress: true` — the standard CI pattern where only the latest push to a branch matters. `cancel-in-progress` depends on whether output from prior runs would be discarded/overwritten. |
+| Idempotency | **Recommended.** Force-pushes rewrite history and can invalidate prior-run artifacts. |
+| Fork posture | Forks push to their own fork; does not propagate to upstream. Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` to prevent running within a user's fork. |
+| Approval gate | Not subject to the "Approve and run workflows" button. |
+| Bot/Copilot events | Pushes via `GITHUB_TOKEN` **do not** trigger `push`. Pushes by GitHub Apps with installation tokens or PATs **do**. |
+| Sanitize payload? | Commit messages are user-controlled but generally trusted (write access required to push). |
+| Safe-outputs | Depends on workflow purpose — `add-comment` on linked issues, `create-issue` for release tracking. |
+
+---
+
+## `pull_request.synchronize` reference
+
+`synchronize` is an activity type on `pull_request` / `pull_request_target`, not a standalone trigger. Its profile lives on those pages. This section documents the behavioral details.
+
+`synchronize` fires once per push to the PR branch (including force-pushes). It does **not** fire per commit — a single push with 50 commits fires one event.
 
 ### Things that *do not* fire `synchronize` (despite reading like they should)
 

@@ -1,12 +1,12 @@
 <nav>
 
-[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Trigger Pitfalls →](trigger-pitfalls.md)
+[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Triggers →](triggers.md)
 
 </nav>
 
 # Tenets
 
-The design principles every workflow in this repo must satisfy. Positive framing — what we're trying to *achieve*. (The complementary negative framing — what to *avoid* — lives in the [Trigger Pitfalls](trigger-pitfalls.md) chapter and the per-trigger pages it links to.)
+The design principles every workflow in this repo must satisfy. Positive framing — what we're trying to *achieve*. (The complementary negative framing — what to *avoid* — lives in the [Triggers](triggers.md) chapter and the per-trigger pages it links to.)
 
 ---
 
@@ -26,7 +26,7 @@ The design principles every workflow in this repo must satisfy. Positive framing
 
 8. **No human single point of failure.** Operational continuity must not depend on any single team member. Credentials, approvals, and recovery knowledge must be distributed across the team — e.g., this repo's `COPILOT_PAT_*` pool distributes credential ownership and rate-limit budget across multiple team members, eliminating the burdened SPOF that a single shared PAT would create.
 
-9. **Limit patterns; converge on canonical recipes.** Focus on canonical recipes for achieving goals consistently — especially regarding which trigger to use when. Maintain a cheat sheet that maps each scenario/goal to its trigger + conditions, and keep it current as we learn. (The [Trigger Pitfalls](trigger-pitfalls.md) chapter is the seed of that cheat sheet.)
+9. **Limit patterns; converge on canonical recipes.** Focus on canonical recipes for achieving goals consistently — especially regarding which trigger to use when. Maintain a cheat sheet that maps each scenario/goal to its trigger + conditions, and keep it current as we learn. (The [Triggers](triggers.md) chapter is the seed of that cheat sheet.)
 
 10. **Mind the signal-to-noise ratio of high-volume triggers.** Convenience triggers (e.g., `slash_command:`) and activity-type filters (e.g., `pull_request: types: [labeled]`, `issues: types: [opened, edited]`) both compile to broad event subscriptions whose activation step runs on every matching event; the agent step fires on only a fraction of those runs. Weigh the tradeoff explicitly: **low-latency invocation requires accepting a high executed-to-filtered ratio**, and that ratio costs runner minutes (and in some configurations, model tokens) on every no-op activation. The activation step must be cheap, and the worst-case invocation rate must be estimated and acceptable.
 
@@ -42,6 +42,6 @@ The design principles every workflow in this repo must satisfy. Positive framing
 
 <nav>
 
-[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Trigger Pitfalls →](trigger-pitfalls.md)
+[← Previous: Table of Contents](../README.md) | [Table of Contents](../README.md) | [Next: Triggers →](triggers.md)
 
 </nav>

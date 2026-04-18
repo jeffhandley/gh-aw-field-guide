@@ -6,25 +6,36 @@
 
 # `pull_request: types: [labeled]` and `label_command:`
 
-Two ways to use a label as a workflow signal — the underlying GitHub event (`pull_request.labeled` / `issues.labeled` / `discussion.labeled`) and the gh-aw convenience trigger that wraps them. They share most of the same pitfalls, with `label_command:` adding a one-shot-RPC twist.
-
-> Don't confuse these with the `on: label` GitHub event, which fires on **repository-level label CRUD** (creating/editing/deleting label definitions in repo settings) — *not* on label *application*. That's a separate trigger and lives in [Appendix A](../appendices/trigger-risk-profile.md).
-
----
-
-## `*.labeled` activity types (`issues`, `pull_request`, `discussion`)
-
-> 🛑 **The `labeled` activity type fires under the labeller's identity, but the payload remains attacker-controlled.** A workflow gated on `github.event.sender` ("only act if a maintainer triggered me") can be tricked: a read-only user opens an issue with attacker prose, a triage-role maintainer applies the `bug` label (innocuous), and the agent now runs as if the maintainer authored the issue. The actor changed; the body, title, and comments did not. The same shape repeats for `assigned`, `milestoned`, `pinned`, etc. — any activity type a maintainer-role actor can perform inherits the issue/PR's existing attacker-controlled payload.
-
-> 🛑 **Cascade fan-out.** Bulk label operations — applying a label across many issues at once via the GitHub UI's bulk-action menu, a script, or a "label everything matching X" workflow — fire one event per affected item in rapid succession. A workflow listening on `pull_request: types: [labeled]` will fire N times in seconds. With `cancel-in-progress: true` only the last one runs (silently dropping work for the earlier N-1 items); without it, runner minutes balloon. The same cascade shape applies to `*.demilestoned` when a milestone is deleted (see [`milestone`](milestone.md)) and to `*.unlabeled` when a label definition is deleted from the repo.
-
----
-
-## `label_command:` (gh-aw convenience trigger)
+### ✅ Recommended
 
 > 🛑 **`label_command:` turns labels into one-shot RPC calls — and inherits the same broad-subscription concurrency catastrophe as `slash_command:`.** The trigger fires when any write-role contributor applies the configured label, runs the agentic workflow, and then **automatically removes the label**. The audit trail is preserved but is *subtle* — the issue/PR event stream shows `Octocat added the deploy label` immediately followed by `github-actions[bot] removed the deploy label`, which is easy to scroll past as a label-fix correction. For a `/deploy`-shaped command, this means a triage-role contributor (write access but typically not deploy-trusted) can fire the deploy by applying a label, and the only record of the command being issued lives in two adjacent timeline events that look like noise.
 >
-> The bigger structural problem is the same shape as [`slash_command:`](comment-and-slash-command.md): `label_command:` subscribes to *every* `labeled` event on the configured event types (`issues`, `pull_request`, `discussion`). The workflow runs — consuming a runner — on every label application by every write-role user, and only the name match causes early abort. Like `slash_command:`, this means **concurrency groups cannot safely be used** (a benign label change on the same target would cancel the in-flight command). Therefore `label_command:` workflows **MUST be implemented to be idempotent**: check before acting, claim a lock, no-op if the work is already in progress or already done. The same discipline scheduled pollers and `slash_command:` workflows must employ. Skipping that discipline produces the same failure modes: duplicate deploys, duplicate comments, duplicate downstream effects, and races that leave the target in an indeterminate state.
+> The bigger structural problem is the same shape as [`slash_command:`](comment-and-slash-command.md): `label_command:` subscribes to *every* `labeled` event on the configured event types (`issues`, `pull_request`, `discussion`). The workflow runs — consuming a runner — on every label application by every write-role user, and only the name match causes early abort. Like `slash_command:`, this means concurrency groups cannot safely be used with `cancel-in-progress: true` (a benign label change on the same target would cancel the in-flight command). Therefore `label_command:` workflows **MUST be implemented to be idempotent**: check before acting, claim a lock, no-op if the work is already in progress or already done.
+
+> 🛑 **The `labeled` activity type fires under the labeller's identity, but the payload remains attacker-controlled.** A workflow gated on `github.event.sender` ("only act if a maintainer triggered me") can be tricked: a read-only user opens an issue with attacker prose, a triage-role maintainer applies the `bug` label (innocuous), and the agent now runs as if the maintainer authored the issue. The actor changed; the body, title, and comments did not.
+
+---
+
+## Scenarios
+
+- One-shot agentic operations triggered by applying a label — `/deploy`, `/approve-release`, `/run-benchmarks`
+- State-driven workflows where a label represents a stage gate (e.g., `ready-for-review`, `needs-backport`)
+- **Higher authorization floor than `slash_command:`** — applying a label requires triage+ role, which is a meaningful step up from read-only comment access
+- `label_command:` with `remove_label: false` turns the label into a persistent state marker rather than a one-shot command
+
+## Profile
+
+| Dimension | Recommendation |
+|---|---|
+| `on.roles:` | Default `[admin, maintainer, write]`. **`triage` is the natural fit here** — label application requires triage role, so excluding triage from `on.roles:` means the activation job *fires* (consuming a runner) but the agent step is *denied*. Add `triage` explicitly for most label-driven workflows. |
+| Activity types | For raw `issues`/`pull_request`/`discussion`: `types: [labeled]` only. For `label_command:`: configured via the label name; `events:` defaults to `[issues, pull_request, discussion]` — narrow if only needed on one. |
+| Concurrency | `${{ github.workflow }}-${{ github.event.issue.number }}`. Use `cancel-in-progress: false` — same shape as `slash_command:`: any label application on the same target shares the group, so a benign label change would cancel an in-flight command. |
+| Idempotency | **Required.** Same discipline as `slash_command:` — check before acting, claim a lock, no-op if already done. Bulk label operations (via GitHub UI or scripts) fire one event per item in rapid succession. `label_command:` auto-removes the label after activation, providing a natural one-shot signal, but the workflow must still be safe to re-run if the label is re-applied. |
+| Fork posture | Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` to prevent running within a user's fork. Labels are upstream-only, but forked repos have their own label sets where these workflows would fire. |
+| Approval gate | Not subject to the "Approve and run workflows" button. |
+| Bot/Copilot events | Label applications via `GITHUB_TOKEN` **do not** trigger `labeled`. Label applications via GitHub App tokens or PATs **do**. |
+| Sanitize payload? | **Yes** in pre-agent steps. The label name is constrained, but the issue/PR body, title, and comments remain attacker-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.issue.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
+| Safe-outputs | Depends on command purpose. `add-labels`, `add-comment` for state transitions. Audit against `on.roles:` — triage users can apply labels, so every safe-output is reachable by the triage role if included. |
 
 ---
 
