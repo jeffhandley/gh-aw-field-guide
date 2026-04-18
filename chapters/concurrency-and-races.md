@@ -1,8 +1,4 @@
-<nav>
-
-<a href="operating-in-a-fork.md">← Previous: Operating Within a Fork</a> | <a href="../README.md">Table of Contents</a> | <a href="authorization-and-roles.md">Next: Authorization, Roles, and Read-Only Contributors →</a>
-
-</nav>
+[← Previous: Operating Within a Fork](operating-in-a-fork.md) | [Table of Contents](../README.md) | [Next: Authorization, Roles, and Read-Only Contributors →](authorization-and-roles.md)
 
 # Concurrency and Race Conditions
 
@@ -53,8 +49,4 @@ Concurrency is not a substitute for idempotency.
 
 ---
 
-<nav>
-
-<a href="operating-in-a-fork.md">← Previous: Operating Within a Fork</a> | <a href="../README.md">Table of Contents</a> | <a href="authorization-and-roles.md">Next: Authorization, Roles, and Read-Only Contributors →</a>
-
-</nav>
+[← Previous: Operating Within a Fork](operating-in-a-fork.md) | [Table of Contents](../README.md) | [Next: Authorization, Roles, and Read-Only Contributors →](authorization-and-roles.md)

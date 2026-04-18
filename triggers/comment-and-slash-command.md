@@ -1,8 +1,4 @@
-<nav>
-
-<a href="push.md">← Previous: `push`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion.md">Next: `discussion` →</a>
-
-</nav>
+[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)
 
 # `issue_comment` and `slash_command:`
 
@@ -46,8 +42,4 @@
 
 ---
 
-<nav>
-
-<a href="push.md">← Previous: `push`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion.md">Next: `discussion` →</a>
-
-</nav>
+[← Previous: `push`](push.md) | [Table of Contents](../README.md) | [Next: `discussion` →](discussion.md)

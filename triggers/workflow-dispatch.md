@@ -1,8 +1,4 @@
-<nav>
-
-<a href="schedule.md">← Previous: `schedule`</a> | <a href="../README.md">Table of Contents</a> | <a href="release.md">Next: `release` →</a>
-
-</nav>
+[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)
 
 # `workflow_dispatch`
 
@@ -36,8 +32,4 @@
 
 ---
 
-<nav>
-
-<a href="schedule.md">← Previous: `schedule`</a> | <a href="../README.md">Table of Contents</a> | <a href="release.md">Next: `release` →</a>
-
-</nav>
+[← Previous: `schedule`](schedule.md) | [Table of Contents](../README.md) | [Next: `release` →](release.md)

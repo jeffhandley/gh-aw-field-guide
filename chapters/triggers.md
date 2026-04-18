@@ -1,8 +1,4 @@
-<nav>
-
-<a href="tenets.md">← Previous: Tenets</a> | <a href="../README.md">Table of Contents</a> | <a href="../triggers/issue.md">Next: `issues` →</a>
-
-</nav>
+[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: `issues` →](../triggers/issue.md)
 
 # Triggers
 
@@ -46,8 +42,4 @@ Additional triggers not covered here (e.g., `branch_protection_rule`, `check_run
 
 ---
 
-<nav>
-
-<a href="tenets.md">← Previous: Tenets</a> | <a href="../README.md">Table of Contents</a> | <a href="../triggers/issue.md">Next: `issues` →</a>
-
-</nav>
+[← Previous: Tenets](tenets.md) | [Table of Contents](../README.md) | [Next: `issues` →](../triggers/issue.md)

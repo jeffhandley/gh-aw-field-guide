@@ -1,8 +1,4 @@
-<nav>
-
-<a href="trigger-risk-profile.md">← Previous: Appendix A — Trigger-by-Trigger Risk Profile</a> | <a href="../README.md">Table of Contents</a> | Next →
-
-</nav>
+[← Previous: Appendix A — Trigger-by-Trigger Risk Profile](trigger-risk-profile.md) | [Table of Contents](../README.md) | Next →
 
 # Appendix B: Footnotes
 
@@ -42,8 +38,4 @@ Sources cited throughout the Field Guide. Each entry's anchor matches the `[^nam
 
 ---
 
-<nav>
-
-<a href="trigger-risk-profile.md">← Previous: Appendix A — Trigger-by-Trigger Risk Profile</a> | <a href="../README.md">Table of Contents</a> | Next →
-
-</nav>
+[← Previous: Appendix A — Trigger-by-Trigger Risk Profile](trigger-risk-profile.md) | [Table of Contents](../README.md) | Next →

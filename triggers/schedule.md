@@ -1,8 +1,4 @@
-<nav>
-
-<a href="pull-request-review-comment.md">← Previous: `pull_request_review_comment`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-dispatch.md">Next: `workflow_dispatch` →</a>
-
-</nav>
+[← Previous: `pull_request_review_comment`](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: `workflow_dispatch` →](workflow-dispatch.md)
 
 # `schedule`
 
@@ -37,8 +33,4 @@
 
 ---
 
-<nav>
-
-<a href="pull-request-review-comment.md">← Previous: `pull_request_review_comment`</a> | <a href="../README.md">Table of Contents</a> | <a href="workflow-dispatch.md">Next: `workflow_dispatch` →</a>
-
-</nav>
+[← Previous: `pull_request_review_comment`](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: `workflow_dispatch` →](workflow-dispatch.md)

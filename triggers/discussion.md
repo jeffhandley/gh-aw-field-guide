@@ -1,8 +1,4 @@
-<nav>
-
-<a href="comment-and-slash-command.md">← Previous: `issue_comment` / `slash_command:`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion-comment.md">Next: `discussion_comment` →</a>
-
-</nav>
+[← Previous: `issue_comment` / `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)
 
 # `discussion`
 
@@ -36,8 +32,4 @@
 
 ---
 
-<nav>
-
-<a href="comment-and-slash-command.md">← Previous: `issue_comment` / `slash_command:`</a> | <a href="../README.md">Table of Contents</a> | <a href="discussion-comment.md">Next: `discussion_comment` →</a>
-
-</nav>
+[← Previous: `issue_comment` / `slash_command:`](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: `discussion_comment` →](discussion-comment.md)

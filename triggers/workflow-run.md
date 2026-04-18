@@ -1,8 +1,4 @@
-<nav>
-
-<a href="workflow-call.md">← Previous: `workflow_call`</a> | <a href="../README.md">Table of Contents</a> | <a href="../chapters/trigger-categories.md">Next: The Two Categories of Triggers →</a>
-
-</nav>
+[← Previous: `workflow_call`](workflow-call.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
 
 # `workflow_run` ⚠️
 
@@ -39,8 +35,4 @@
 
 ---
 
-<nav>
-
-<a href="workflow-call.md">← Previous: `workflow_call`</a> | <a href="../README.md">Table of Contents</a> | <a href="../chapters/trigger-categories.md">Next: The Two Categories of Triggers →</a>
-
-</nav>
+[← Previous: `workflow_call`](workflow-call.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
