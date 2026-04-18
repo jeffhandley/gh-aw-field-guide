@@ -1,6 +1,6 @@
 # GitHub Agentic Workflows — Field Guide
 
-A working reference for every trigger usable in traditional GitHub Actions and in **GitHub Agentic Workflows (`gh-aw`)**, with emphasis on the surprises: apparent-vs-actual triggering, the *Approve and run workflows* gate, fork behavior, secrets exposure, concurrency-induced races, role-based authorization, and the read-only-contributor write surface.
+A working reference for every trigger usable in [traditional GitHub Workflows](https://docs.github.com/actions/writing-workflows) and in [GitHub Agentic Workflows (`gh-aw`)](https://gh.io/gh-aw), with emphasis on the surprises: apparent-vs-actual triggering, the *Approve and run workflows* gate, fork behavior, secrets exposure, concurrency-induced races, role-based authorization, and the read-only-contributor write surface.
 
 - **[Tenets](chapters/tenets.md)** — the design principles every workflow must satisfy.
 - **[Triggers](chapters/triggers.md)** — when to use each trigger, cross-cutting concern profiles, and headline pitfalls.
