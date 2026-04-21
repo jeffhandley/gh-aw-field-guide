@@ -135,6 +135,9 @@ Each trigger page includes an **Integrity filtering** row in its profile table w
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
+[^role-checks-go]: gh-aw source, [`pkg/workflow/role_checks.go`](https://github.com/github/gh-aw/blob/main/pkg/workflow/role_checks.go)
+[^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
+
 ---
 
-[← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
+[← Previous: Concurrency and Race Conditions](concurrency-and-races.md)| [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)

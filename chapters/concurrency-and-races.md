@@ -51,6 +51,8 @@ Concurrency is not a substitute for idempotency.
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
+[^concurrency]: GitHub Docs, [Using concurrency](https://docs.github.com/en/actions/using-jobs/using-concurrency)
+
 ---
 
-[← Previous: Operating Within a Fork](operating-in-a-fork.md) | [Table of Contents](../README.md) | [Next: Authorization, Roles, and Read-Only Contributors →](authorization-and-roles.md)
+[← Previous: Operating Within a Fork](operating-in-a-fork.md)| [Table of Contents](../README.md) | [Next: Authorization, Roles, and Read-Only Contributors →](authorization-and-roles.md)

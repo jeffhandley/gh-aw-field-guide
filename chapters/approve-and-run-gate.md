@@ -51,6 +51,10 @@ The "Approve and run workflows" button looks like a security feature. **Treat it
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
+[^approval-docs]: GitHub Docs, [Approving workflow runs from public forks](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/approving-workflow-runs-from-public-forks)
+[^approval-policy]: GitHub Docs, [Managing GitHub Actions settings for a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository)
+[^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
+
 ---
 
-[← Previous: Apparent vs Actual](apparent-vs-actual.md) | [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
+[← Previous: Apparent vs Actual](apparent-vs-actual.md)| [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)

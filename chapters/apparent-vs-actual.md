@@ -31,6 +31,4 @@ The first quote concedes the noise; the second concedes that even narrow matchin
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
----
-
-[← Previous: The Two Categories of Triggers](trigger-categories.md) | [Table of Contents](../README.md) | [Next: The "Approve and run workflows" Gate →](approve-and-run-gate.md)
+[^command-doc]: gh-aw [Command Triggers reference](https://github.github.com/gh-aw/reference/command-triggers/)| [Table of Contents](../README.md) | [Next: The "Approve and run workflows" Gate →](approve-and-run-gate.md)

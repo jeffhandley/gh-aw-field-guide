@@ -84,6 +84,13 @@ gh-aw calls these **"trigger types"** but the docs themselves repeatedly note th
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
+[^triggers-doc]: gh-aw [Triggers reference](https://github.github.com/gh-aw/reference/triggers/)
+[^command-doc]: gh-aw [Command Triggers reference](https://github.github.com/gh-aw/reference/command-triggers/)
+[^role-checks-go]: gh-aw source, [`pkg/workflow/role_checks.go`](https://github.com/github/gh-aw/blob/main/pkg/workflow/role_checks.go)
+[^approval-docs]: GitHub Docs, [Approving workflow runs from public forks](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/approving-workflow-runs-from-public-forks)
+[^token-permissions]: GitHub Docs, [Automatic token authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
+[^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
+
 ---
 
-[← Previous: workflow_run](../triggers/workflow-run.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
+[← Previous: workflow_run](../triggers/workflow-run.md)| [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)

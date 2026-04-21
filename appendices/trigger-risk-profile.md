@@ -172,6 +172,9 @@ These either have low headline risk or are irrelevant to agentic workflows in th
 
 📚 See [Appendix B: Footnotes](footnotes.md) for source citations.
 
+[^token-permissions]: GitHub Docs, [Automatic token authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
+[^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
+
 ---
 
 [← Previous: Authorization, Roles, and Read-Only Contributors](../chapters/authorization-and-roles.md) | [Table of Contents](../README.md) | [Next: Appendix B — Footnotes →](footnotes.md)
