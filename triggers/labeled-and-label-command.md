@@ -18,7 +18,7 @@ title: "labeled and label_command"
 
 ## Scenarios
 
-- One-shot agentic operations triggered by applying a label — `/deploy`, `/approve-release`, `/run-benchmarks`
+- One-shot agentic operations triggered by applying a label — `/backport`, `/approve-release`, `/run-benchmarks`
 - State-driven workflows where a label represents a stage gate (e.g., `ready-for-review`, `needs-backport`)
 - **Higher authorization floor than `slash_command:`** — applying a label requires triage+ role, which is a meaningful step up from read-only comment access
 - `label_command:` with `remove_label: false` turns the label into a persistent state marker rather than a one-shot command
@@ -36,6 +36,7 @@ title: "labeled and label_command"
 | Bot/Copilot events | Label applications via `GITHUB_TOKEN` **do not** trigger `labeled`. Label applications via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes** in pre-agent steps. The label name is constrained, but the issue/PR body, title, and comments remain attacker-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.issue.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | Depends on command purpose. `add-labels`, `add-comment` for state transitions. Audit against `on.roles:` — triage users can apply labels, so every safe-output is reachable by the triage role if included. |
+| Integrity filtering | `none` — the label application by a triage+ user *is* the human-in-the-loop gate, replacing the need for integrity filtering to gate content trust. Must pair with tight `safe-outputs` and `on.roles:` including `triage`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

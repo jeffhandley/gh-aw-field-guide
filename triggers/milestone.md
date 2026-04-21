@@ -30,6 +30,7 @@ title: "milestone"
 | Bot/Copilot events | Milestone operations via `GITHUB_TOKEN` **do not** trigger. Operations via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | Milestone title and description are maintainer-controlled and generally trusted (write access required). Issue/PR bodies linked to the milestone remain user-controlled — sanitize those if ingested. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `create-issue`, `add-comment`, `add-labels`, `create-pull-request`, `update-issue`, `create-discussion` for release automation. `workflow_dispatch` via `gh workflow run` if triggering downstream workflows. |
+| Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` or `none` when scanning community issues in the milestone — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ## Related events (cascade)
 

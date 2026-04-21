@@ -19,6 +19,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.issue.number }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Sanitize:** Yes — `steps.sanitized.outputs.text`; unsanitized OK within sandboxed agent job.
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions (e.g., auto-labeling workflow). `unapproved`/`none` for workflows that scan community issues (e.g., duplicate detection with `add-comment` only).
 
 ## [`pull_request`](../triggers/pull-request.md) — ⛔ Avoid
 - **Authz:** Anyone who can open a PR (incl. fork contributors). `on.roles: all` is acceptable.
@@ -28,6 +29,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.pull_request.number }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Alternatives:** [`schedule`](../triggers/schedule.md), [`issue_comment`/`slash_command:`](../triggers/comment-and-slash-command.md), [`labeled`/`label_command:`](../triggers/labeled-and-label-command.md).
+- **Integrity filtering:** `approved`. Fork contributors are typically `CONTRIBUTOR` or lower, so their PR content is filtered out before the agent sees it.
 
 ## [`pull_request_target`](../triggers/pull-request-target.md) — ⛔ Avoid
 - **Authz:** Same actors as `pull_request`. `on.roles: all` only with ☢️ extreme caution.
@@ -38,6 +40,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}` + gate agent on `github.event.pull_request.head.repo.fork == false`. **Never check out PR head SHA.**
 - **Sanitize:** Yes critically — `steps.sanitized.outputs.text`; unsanitized OK within sandboxed agent job coupled with proper `safe-outputs`.
 - **Alternatives:** [`schedule`](../triggers/schedule.md), [`issue_comment`/`slash_command:`](../triggers/comment-and-slash-command.md), [`labeled`/`label_command:`](../triggers/labeled-and-label-command.md).
+- **Integrity filtering:** `approved`. Fork contributors are typically `CONTRIBUTOR` or lower, so their PR content is filtered out before the agent sees it. Does not protect against checking out PR head SHA.
 
 ## [`push`](../triggers/push.md) — ⚠️ Use with caution
 - **Authz:** Write+ (push access required).
@@ -46,6 +49,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Runs:** On every matching push; always use explicit `branches:` and optionally `paths:`/`tags:` filters.
 - **Concurrency:** `${{ github.workflow }}-${{ github.ref }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved` for post-merge scans that find community issues resolved by the push (e.g., commenting or closing resolved issues), paired with tight `safe-outputs`.
 
 ## [`issue_comment`](../triggers/comment-and-slash-command.md) / [`slash_command:`](../triggers/comment-and-slash-command.md) — ⚠️ Use with caution
 - **Authz:** Read (anyone can comment). `on.roles: all` acceptable for community-facing commands.
@@ -56,6 +60,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Sanitize:** Yes — `steps.sanitized.outputs.text`; unsanitized OK within sandboxed agent job.
 - **Idempotency:** Required. `lock-for-agent: true` available but use with extreme caution.
 - **`slash_command:` specifics:** Always narrow `events:`. Broad subscription + shared concurrency group = [non-matching-cancels-matching race](../chapters/concurrency-and-races.md).
+- **Integrity filtering:** `approved` for privileged commands (e.g., `/backport` that applies labels or dispatches workflows). `unapproved` for community-facing bots (e.g., `/help` that only posts replies), paired with tight `safe-outputs`.
 
 ## [`discussion`](../triggers/discussion.md) / [`discussion_comment`](../triggers/discussion-comment.md) — ⚠️ Use with caution
 - **Authz:** Read. `on.roles: all` acceptable — same considerations as `issues`.
@@ -65,6 +70,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Sanitize:** Yes — `steps.sanitized.outputs.text`; unsanitized OK within sandboxed agent job.
 - **Note:** Most-open untrusted-input surface; no approval gate; lower visibility/monitoring than issues or PRs.
+- **Integrity filtering:** `approved` for privileged operations (e.g., labeling or routing discussions). `unapproved` for community Q&A bots (e.g., auto-reply with `add-comment` only), paired with tight `safe-outputs`.
 
 ## [`labeled` / `label_command:`](../triggers/labeled-and-label-command.md) — ✅ Recommended
 - **Authz:** Triage+ (label application requires triage role). `triage` is the natural fit for `on.roles:`.
@@ -73,6 +79,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.issue.number }}` with `cancel-in-progress: false`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Idempotency:** Required. `label_command:` auto-removes the label (one-shot), but must be safe to re-run.
+- **Integrity filtering:** `none` — the label application is the human-in-the-loop gate.
 
 ## [`pull_request_review`](../triggers/pull-request-review.md) — ⚠️ Use with caution
 - **Authz:** Read (anyone can submit a review). `on.roles: all` acceptable — same considerations as `issues`.
@@ -81,6 +88,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.pull_request.number }}` with `cancel-in-progress: false`. Prefer separate workflows per trigger to avoid group-key collisions.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Note:** "Review submitted" ≠ "approved." Fires for `COMMENT`-type reviews from any user.
+- **Integrity filtering:** `approved` for post-approval automation (e.g., applying ready-to-land label). `unapproved`/`none` when intentionally reading community review content (e.g., reply-only review bot), paired with tight `safe-outputs`.
 
 ## [`pull_request_review_comment`](../triggers/pull-request-review-comment.md) — ⚠️ Use with caution
 - **Authz:** Read (anyone can post inline comments). `on.roles: all` acceptable.
@@ -89,6 +97,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.pull_request.number }}` with `cancel-in-progress: false`. Prefer separate workflow from `pull_request` / `pull_request_review`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Note:** The trigger nobody remembers exists. Inline comments are high-leverage surface for positioned content.
+- **Integrity filtering:** `approved` (e.g., agent-generated code explanations). `unapproved`/`none` when intentionally reading community inline comments (e.g., reply-only bot). Highest-leverage injection vector.
 
 ## [`schedule`](../triggers/schedule.md) — ✅ Recommended
 - **Authz:** None — no actor. Runs as default branch workflow file.
@@ -98,6 +107,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}` (defense-in-depth; schedules disabled on forks by default).
 - **Idempotency:** Required. Pair with `workflow_dispatch` for manual off-schedule runs.
 - **Cost:** Watch for unbounded growth — a workflow designed for 20 issues running against 2,000.
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved` for housekeeping pollers that scan community content (e.g., stale issue sweeps, triage of community-filed issues), paired with tight `safe-outputs`.
 
 ## [`workflow_dispatch`](../triggers/workflow-dispatch.md) — ✅ Recommended
 - **Authz:** Write+ required. Auto-paired with most gh-aw triggers.
@@ -106,6 +116,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** Standard.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}` — `workflow_dispatch` is the explicit escape hatch.
 - **Note:** Branch selection is user-controlled — a write-role contributor can dispatch against a branch with different workflow YAML.
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved`/`none` when the dispatched workflow reads community content (e.g., ad-hoc triage run), paired with tight `safe-outputs`.
 
 ## [`release`](../triggers/release.md) — ✅ Recommended
 - **Authz:** Write+ (creating/publishing releases requires write access).
@@ -114,6 +125,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.release.tag_name }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Idempotency:** Required — releases can be deleted and re-created.
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved`/`none` when scanning community issues (e.g., closing issues resolved by the release), paired with tight `safe-outputs`.
 
 ## [`milestone`](../triggers/milestone.md) — ✅ Recommended
 - **Authz:** Write+ (milestone operations require write access).
@@ -122,6 +134,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.milestone.number }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Cascade:** Deleting a milestone fires `issues.demilestoned` / `pull_request.demilestoned` for every assigned item. `on: milestone` ≠ `on: issues: types: [milestoned]`.
+- **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved`/`none` when scanning community issues (e.g., generating release notes from community-filed issues in the milestone), paired with tight `safe-outputs`.
 
 ## [`workflow_call`](../triggers/workflow-call.md) — ☢️ Use with extreme caution
 - **Authz:** Inherits caller's. Callee cannot enforce its own role check.
@@ -129,6 +142,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Bot/Copilot events:** Inherits caller's.
 - **Concurrency:** Layers on top of caller's.
 - **Note:** `secrets: inherit` hands every secret to the callee. Pin by SHA, not branch. Undeclared trust boundary.
+- **Integrity filtering:** `approved` as defense-in-depth; caller's trigger determines the real threat model.
 
 ## [`workflow_run`](../triggers/workflow-run.md) — ☢️ Use with extreme caution
 - **Authz:** Indirect (whoever triggered the upstream workflow).
@@ -138,6 +152,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Concurrency:** `${{ github.workflow }}-${{ github.event.workflow_run.id }}`.
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`. Treat all downloaded artifacts as untrusted.
 - **Alternatives:** [`schedule`](../triggers/schedule.md), [`issue_comment`/`slash_command:`](../triggers/comment-and-slash-command.md).
+- **Integrity filtering:** `approved`; `merged` for production-content-only workflows. `unapproved`/`none` carries full-secrets warning. Does not filter downloaded artifacts.
 
 ---
 

@@ -34,6 +34,7 @@ title: "push"
 | Bot/Copilot events | Pushes via `GITHUB_TOKEN` **do not** trigger `push`. Pushes by GitHub Apps with installation tokens or PATs **do**. |
 | Sanitize payload? | Commit messages are user-controlled but generally trusted (write access required to push). |
 | Safe-outputs | Depends on workflow purpose — `add-comment` on linked issues, `create-issue` for release tracking. |
+| Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` when the workflow intentionally consumes community content (e.g., scanning community issues resolved by the push) — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

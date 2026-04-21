@@ -33,6 +33,7 @@ title: "pull_request_review_comment"
 | Bot/Copilot events | Inline review comments via `GITHUB_TOKEN` **do not** trigger. Comments via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. Comment body is user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.comment.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-comment` for reply threads. Avoid broad mutations — inline review comments are high-volume and the workflow should be lightweight. |
+| Integrity filtering | `approved`. `unapproved` or `none` when intentionally consuming community review content — must pair with tight `safe-outputs`. Inline comments are the highest-leverage prompt-injection surface, making the integrity level choice especially important. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

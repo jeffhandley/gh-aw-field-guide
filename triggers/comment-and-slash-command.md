@@ -22,7 +22,7 @@ title: "issue_comment and slash_command"
 
 ## Scenarios
 
-- On-demand agentic operations via `/command` comments — `/triage`, `/review`, `/deploy`, `/help`
+- On-demand agentic operations via `/command` comments — `/triage`, `/review`, `/backport`, `/help`
 - Responding to questions or requests in issue/PR conversations
 - **The preferred trigger for PR operations that need write access** — not subject to the "Approve and run workflows" button, even on fork PRs
 - Community-facing self-service bots (with `on.roles: all` and appropriate safe-outputs)
@@ -43,6 +43,7 @@ title: "issue_comment and slash_command"
 | Bot/Copilot events | Comments via `GITHUB_TOKEN` **do not** trigger. Comments via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. Comment/body text is user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.comment.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | Minimum required for the command's purpose. Audit against `on.roles:` — if `all`, every safe-output is reachable by anyone who can comment. |
+| Integrity filtering | `approved` for privileged `/command` workflows with `safe-outputs` that require triage+ permissions (e.g., applying labels, dispatching workflows). `unapproved` for community-facing bots (e.g., `/help`) that intentionally consume untrusted input — must pair with `safe-outputs` limited to actions any user can perform (`add-comment`) and appropriate `on.roles:`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

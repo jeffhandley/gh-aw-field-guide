@@ -33,6 +33,7 @@ title: "workflow_call"
 | Bot/Copilot events | Inherits from the caller. |
 | Sanitize payload? | **Yes.** The callee cannot enforce that callers don't pipe attacker-controlled prose straight into `inputs:`. Sanitize all inputs inside the called workflow. Acceptable to handle unsanitized inputs within the agent job (sandboxed), coupled with proper `safe-outputs`. **Pin by SHA**, not by branch — `uses: org/shared-workflows/.github/workflows/triage.yml@<sha>`. |
 | Safe-outputs | Declared by the callee — but the caller's `permissions:` and secrets are what back them. Audit the callee's safe-outputs against the caller's permission set. |
+| Integrity filtering | `approved` as defense-in-depth. The caller's trigger determines the real threat model — the callee inherits the caller's permissions and secrets and cannot know which trigger invoked it. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

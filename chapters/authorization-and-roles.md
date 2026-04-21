@@ -96,6 +96,42 @@ Legend: ✅ = reachable; ⚠️ = reachable but with caveats; ❌ = not reachabl
 3. **Minimize `safe-outputs:`** to only the structured mutations the workflow needs to make.
 4. **For PR-touching workflows: never check out the PR head SHA in the same job that has secrets.** Use `pull_request` (read-only token) for code analysis, and a separate `pull_request_target` job *without* checkout for the comment/label posting.
 5. **Add an explicit fork guard** (`if: github.event.pull_request.head.repo.fork == false`) for any agent step that should refuse to act on cross-fork PRs.
+6. **Configure `min-integrity`** to control what content the agent can see during execution — see [Integrity filtering](#integrity-filtering-toolsgithubmin-integrity) below.
+
+## Integrity filtering (`tools.github.min-integrity`)
+
+`on.roles:` gates **who can trigger** the agent; integrity filtering gates **what content the agent can see**. They are layered controls — both matter, and broadening one increases the importance of the other.
+
+The MCP gateway intercepts tool calls to GitHub and filters content by author trust. Items below the configured `min-integrity` level are removed before the agent sees them. The hierarchy, from most to least restrictive: `merged` > `approved` > `unapproved` > `none` > `blocked`.
+
+| Level | Who qualifies |
+|---|---|
+| `merged` | Merged PRs; commits reachable from the default branch (any author) |
+| `approved` | `OWNER`, `MEMBER`, `COLLABORATOR`; non-fork PRs on public repos; all items in private repos; platform bots (dependabot); users in `trusted-users` |
+| `unapproved` | `CONTRIBUTOR`, `FIRST_TIME_CONTRIBUTOR` |
+| `none` | All content, including `FIRST_TIMER` and users with no association |
+| `blocked` | Users in `blocked-users` — always denied, cannot be promoted |
+
+### Standard guidance
+
+**`approved`** — the default. Use when `safe-outputs` include operations that require triage+ permissions: `add-labels`, editing others' issues/PRs, `push-to-pull-request-branch`, `create-pull-request`, `merge`, `close`.
+
+**`unapproved` or `none`** — when the workflow *intentionally* consumes untrusted input to operate on community-filed issues and pull requests. **Must be paired with** tight `safe-outputs` limited to actions any user can perform (`add-comment`, author editing their own description) and `on.roles:` to ensure the trigger's authorization floor prevents privilege escalation. The lower integrity level widens what the agent can read; the `safe-outputs` and `on.roles:` pairing constrains what it can do with that content.
+
+**`none` specifically** — when a human-in-the-loop gate already exists outside the integrity system (e.g., `label_command:` where the label application by a triage+ user *is* the approval signal).
+
+**`merged`** — only for workflows that should exclusively operate on production content (e.g., `workflow_run` acting on merged code, not in-flight PRs).
+
+### Interaction with `on.roles:`
+
+| `on.roles:` | `min-integrity` | Effect |
+|---|---|---|
+| Default `[admin, maintainer, write]` | `approved` | **Most restrictive.** Only trusted actors trigger the agent, and the agent only sees trusted content. |
+| Default `[admin, maintainer, write]` | `unapproved` / `none` | Agent only runs for trusted actors, but can read community content during execution. Appropriate for workflows like post-merge scans that need to find community issues resolved by a push. |
+| `all` | `approved` | **Two-layer defense.** Any actor can trigger the agent, but the agent only sees content from trusted authors. The integrity filter is the primary content-trust boundary. |
+| `all` | `unapproved` / `none` | **Widest exposure.** Any actor triggers the agent, and the agent sees community content. Must pair with minimal `safe-outputs` — the only remaining constraint on blast radius. |
+
+Each trigger page includes an **Integrity filtering** row in its profile table with the specific recommendation. See the [integrity filtering reference](https://github.github.com/gh-aw/reference/integrity/) for full configuration options including `blocked-users`, `trusted-users`, `approval-labels`, and reaction-based endorsement.
 
 📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 

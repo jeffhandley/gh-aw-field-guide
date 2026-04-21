@@ -42,6 +42,7 @@ See also: [The "Approve and run workflows" Gate](../chapters/approve-and-run-gat
 | Bot/Copilot events | Events created via `GITHUB_TOKEN` **do not** trigger `pull_request_target`. Events from GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, critically** in pre-agent steps. PR title, body, branch name, label names, and commit messages are all attacker-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.pull_request.body }}`. However, it *is* acceptable to handle the unsanitized payload within the **agent job** itself, as that job is sandboxed — this must be coupled with proper `safe-outputs` handling so the agent cannot exfiltrate or write beyond its declared outputs. |
 | Safe-outputs | `add-labels`, `add-comment` only. **Avoid** `push-to-pull-request-branch`, `create-pull-request`, `update-issue` — each is a write amplifier with full secrets. |
+| Integrity filtering | `approved`. Fork contributors are typically `CONTRIBUTOR` or lower, so their PR content is filtered out before the agent sees it. Integrity filtering does **not** protect against checking out the PR head SHA — that is a runner-filesystem concern, not a content-trust concern. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

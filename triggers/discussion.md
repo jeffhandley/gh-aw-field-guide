@@ -33,6 +33,7 @@ title: "discussion"
 | Bot/Copilot events | Discussions created via `GITHUB_TOKEN` **do not** trigger. Discussions via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. Discussion body and title are user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.discussion.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-comment`, `add-labels`, `create-discussion`. No `update-issue` analog for discussions — discussions have limited structured mutation surface. |
+| Integrity filtering | `approved` for privileged operations. `unapproved` for community Q&A bots that intentionally consume untrusted input — must pair with tight `safe-outputs` (e.g., `add-comment` only) and `on.roles:`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

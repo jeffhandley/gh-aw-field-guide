@@ -32,6 +32,7 @@ title: "issues"
 | Bot/Copilot events | Issues created via `GITHUB_TOKEN` **do not** trigger `issues`. Issues via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. `issue.body` and `issue.title` are user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.issue.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-labels`, `add-comment`. Avoid `update-issue` on `.edited` (creates feedback loops). |
+| Integrity filtering | `approved` (default) for outputs that require triage+ permissions (`add-labels`, `close`, `update-issue`). Lower to `unapproved` or `none` only when the workflow intentionally reads community content (e.g., duplicate detection) and limits `safe-outputs` to actions any user can perform (`add-comment`, author editing their own description). Must pair with tight `safe-outputs` and `on.roles:`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

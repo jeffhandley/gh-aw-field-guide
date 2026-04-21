@@ -41,6 +41,7 @@ title: "pull_request"
 | Bot/Copilot events | Events created via `GITHUB_TOKEN` **do not** trigger `pull_request`. Events from GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. PR title, body, and branch name are user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.pull_request.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-labels`, `add-comment` for review-assist. `create-issue` if filing follow-ups. No `push-to-pull-request-branch` unless the workflow explicitly intends to commit changes. |
+| Integrity filtering | `approved`. Fork contributors are typically `CONTRIBUTOR` or lower, so their PR content is filtered out before the agent sees it. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

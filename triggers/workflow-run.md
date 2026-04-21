@@ -36,6 +36,7 @@ title: "workflow_run"
 | Bot/Copilot events | Workflow completions via any mechanism trigger `workflow_run` — including `GITHUB_TOKEN`-triggered workflows. |
 | Sanitize payload? | **Yes, critically.** All artifacts downloaded from the upstream run must be treated as untrusted — they may contain shell-injection or prompt-injection payloads from attacker-controlled fork code. Acceptable to handle artifacts within the agent job (sandboxed), coupled with proper `safe-outputs`. Never shell out unsafely with artifact contents in pre-agent steps. |
 | Safe-outputs | `add-comment`, `add-labels` for post-CI status posting. **Avoid** broad mutations — the workflow has full secrets and any safe-output is backed by a write token. |
+| Integrity filtering | `approved` — filters fork contributor content, which is the primary attack vector for this trigger. `merged` when operating only on production content. `unapproved` or `none` carries an explicit additional warning: the full-secrets context makes the `safe-outputs` pairing requirement structurally weaker. Integrity filtering does **not** filter downloaded artifacts — treat all artifacts as untrusted. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

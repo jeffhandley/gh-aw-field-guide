@@ -33,6 +33,7 @@ title: "workflow_dispatch"
 | Bot/Copilot events | Dispatches via `GITHUB_TOKEN` **do not** trigger. Dispatches via GitHub App tokens or PATs **do** — this is the canonical way for one workflow to invoke another. |
 | Sanitize payload? | **Yes** for free-form string `inputs:` in pre-agent steps. Use `steps.sanitized.outputs.text` or pass inputs only via `env:` blocks, never directly into shell commands. Acceptable to handle unsanitized inputs within the agent job (sandboxed), coupled with proper `safe-outputs`. **Branch selection is also user-controlled** — a write-role contributor can dispatch against a branch with a different version of the workflow YAML that has less-restrictive permissions or safe-outputs. |
 | Safe-outputs | Depends on workflow purpose. No inherent restriction — but audit the blast radius given that any write-role contributor can invoke with any inputs against any branch. |
+| Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` or `none` when the dispatched workflow intentionally consumes community content — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

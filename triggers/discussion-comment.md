@@ -33,6 +33,7 @@ title: "discussion_comment"
 | Bot/Copilot events | Discussion comments via `GITHUB_TOKEN` **do not** trigger. Comments via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. Comment body is user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.comment.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-comment`, `add-labels`. Audit against `on.roles:` — if `all`, every safe-output is reachable by anyone who can comment. |
+| Integrity filtering | `approved` for privileged operations. `unapproved` for community-facing bots — same considerations as [`discussion`](discussion.md). See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

@@ -35,6 +35,7 @@ title: "pull_request_review"
 | Bot/Copilot events | Reviews via `GITHUB_TOKEN` **do not** trigger. Reviews via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | **Yes, always** in pre-agent steps. Review body is user-controlled; use `steps.sanitized.outputs.text`, never raw `${{ github.event.review.body }}`. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `add-labels`, `add-comment` for post-approval workflows. Avoid `push-to-pull-request-branch` or `create-pull-request` — over-broad for review-driven automation. |
+| Integrity filtering | `approved`. `unapproved` or `none` when intentionally consuming community review content — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 

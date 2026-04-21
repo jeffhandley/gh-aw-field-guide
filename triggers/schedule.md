@@ -34,6 +34,7 @@ title: "schedule"
 | Bot/Copilot events | N/A — schedule is time-driven, not event-driven. |
 | Sanitize payload? | No event payload to sanitize. However, the data the workflow *polls* (issue bodies, PR titles, comments) is still user-controlled — sanitize anything ingested from the GitHub API before passing to the agent. Acceptable to handle unsanitized polled data within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | Depends on workflow purpose. `add-labels`, `add-comment`, `create-issue`, `update-issue`, `create-pull-request`, `push-to-pull-request-branch` are all common for housekeeping pollers. Cost consciousness is critical — a scheduled "triage open issues" workflow written for 20 issues may still run years later against 2,000 issues at 100× the original per-run cost. |
+| Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` when the workflow intentionally consumes community content (typical for housekeeping pollers) — must pair with tight `safe-outputs`. No triggering actor means no `on.roles:` gate; integrity filtering is the primary content-trust boundary. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 
