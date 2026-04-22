@@ -14,8 +14,8 @@ title: "workflow_dispatch"
 
 ## Scenarios
 
-- Manual escape hatch for any workflow — debugging, catch-up runs, ad-hoc invocation
-- **Automatically paired with most gh-aw triggers** — `slash_command:`, `label_command:`, schedule shorthands, and trigger shorthands all auto-inject `workflow_dispatch` by default
+- Manual escape hatch for any workflow — debugging, troubleshooting, catch-up runs, ad-hoc invocation
+- **Pair with almost every other trigger** so the same workflow can be invoked manually for testing, troubleshooting a stuck run, or off-schedule execution. gh-aw auto-injects `workflow_dispatch` for `slash_command:`, `label_command:`, schedule shorthands, and most trigger shorthands; for any other trigger, add `workflow_dispatch:` explicitly. The only triggers it doesn't pair cleanly with are `workflow_call` (a callee, not an event) and `workflow_run` (which dispatches downstream of another workflow).
 - Administrative operations that should only be invoked deliberately (e.g., release cutting, environment provisioning)
 - The explicit escape hatch for the fork guard pattern — fork owners can manually dispatch to intentionally test workflows in their fork
 - Passing free-form prompt content into agentic workflows via string `inputs:` — the invoker is a write+ user whose input is trusted
@@ -25,7 +25,7 @@ title: "workflow_dispatch"
 | Dimension | Recommendation |
 |---|---|
 | `on.roles:` | N/A — only write+ users can invoke `workflow_dispatch`. gh-aw does not inject a role check for `workflow_dispatch`-only workflows. |
-| Activity types | N/A. Define `inputs:` with constrained types (choice, boolean, number) for structured parameters, and free-form strings for prompt content to pass into agentic workflows. **Strongly recommended to pair with other triggers** (schedule shorthands, `slash_command:`, etc.) — gh-aw auto-injects `workflow_dispatch` for most trigger types. |
+| Activity types | N/A. Define `inputs:` with constrained types (choice, boolean, number) for structured parameters, and free-form strings for prompt content to pass into agentic workflows. **Strongly recommended to pair with almost every other trigger** so the workflow is manually invocable for testing, troubleshooting, and off-schedule runs — gh-aw auto-injects `workflow_dispatch` for `slash_command:`, `label_command:`, schedule shorthands, and most trigger shorthands; add it explicitly for the rest. |
 | Concurrency | `${{ github.workflow }}-${{ github.run_id }}` for one-off invocations. For workflows that also have event-driven triggers, match the concurrency group of the primary trigger. |
 | Idempotency | **Recommended.** Manual invocations may be retried or fired multiple times by different users. |
 | Fork posture | Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` — fork owners can dispatch in their own fork against any branch. This is intentional — `workflow_dispatch` is the explicit escape hatch in the fork guard pattern. |

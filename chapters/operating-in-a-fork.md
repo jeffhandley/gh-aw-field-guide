@@ -28,7 +28,9 @@ When you fork a repository, a copy of every workflow file (`.github/workflows/**
 
 ## The `if: workflow_dispatch || not-a-fork` guard pattern
 
-The simplest and most reliable defense is a top-level job condition that prevents every workflow from running in any fork unless explicitly invoked manually:
+The simplest and most reliable defense is a top-level job condition that prevents every workflow from running in any fork. Pick one of two variants depending on whether you want to leave a manual escape hatch.
+
+**With the `workflow_dispatch` escape hatch** (recommended — fork owners can opt in by manually dispatching from the Actions tab):
 
 ```yaml
 on:
@@ -39,20 +41,31 @@ on:
 
 jobs:
   guard:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.repository.fork == false }}
+    if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}
     # ...rest of workflow
 ```
 
-Equivalent and arguably stricter — pin the workflow to the **specific upstream `owner/repo`**:
+**Without the escape hatch** (strictest — the workflow can never run inside a fork, even on manual dispatch):
 
 ```yaml
-if: ${{ github.event_name == 'workflow_dispatch' || github.repository == 'OWNER/REPO' }}
+jobs:
+  guard:
+    if: ${{ !github.event.repository.fork }}
+    # ...rest of workflow
 ```
 
-**Why both clauses?**
+**Why both clauses in the recommended pattern?**
 
-- `github.event.repository.fork == false` (or `github.repository == 'OWNER/REPO'`) prevents the workflow from running on routine events inside any fork.
+- `!github.event.repository.fork` prevents the workflow from running on routine events inside any fork.
 - `github.event_name == 'workflow_dispatch'` is the explicit escape hatch: if a forker *intends* to run the workflow themselves to test their changes, they invoke it manually from the Actions tab. They get the consequences of their own action, not a surprise.
+
+> ⚠️ **YAML gotcha — don't start a bare `if:` value with `!`.** When you write an `if:` value *without* the `${{ ... }}` wrapper, YAML parses the value directly, and `!` is reserved as YAML's [tag indicator](https://yaml.org/spec/1.2.2/#691-node-tags). A line like `if: !github.event.repository.fork` is a YAML parse error, not a falsy-fork check. Wrap the expression in parentheses so the value no longer begins with `!`:
+>
+> ```yaml
+> if: (!github.event.repository.fork)
+> ```
+>
+> Inside `${{ ... }}` the leading character is `$`, so `!` is fine in that position.
 
 **For agentic workflows specifically:** add the same `if:` to the `pre-activation` job in the auto-injected `on.steps:` block, so even the activation runner doesn't spin up in forks. Without this, the workflow still consumes a runner minute in every fork on every event — and if the fork owner happens to have analogously-named secrets, the agent step itself may run.
 
