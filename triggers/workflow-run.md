@@ -4,7 +4,7 @@ title: "workflow_run"
 
 [← Previous: workflow_call](workflow-call.md) | [Table of Contents](../README.md) | [Next: pull_request →](pull-request.md)
 
-# `workflow_run` ⚠️
+# `workflow_run`
 
 ### ☢️ Use with extreme caution
 
