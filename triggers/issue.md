@@ -2,7 +2,7 @@
 title: "issues"
 ---
 
-[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: pull_request →](pull-request.md)
+[← Previous: labeled / label_command:](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: release →](release.md)
 
 # `issues`
 
@@ -36,4 +36,4 @@ title: "issues"
 
 ---
 
-[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: pull_request →](pull-request.md)
+[← Previous: labeled / label_command:](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: release →](release.md)

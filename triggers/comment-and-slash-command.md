@@ -2,7 +2,7 @@
 title: "issue_comment and slash_command"
 ---
 
-[← Previous: push](push.md) | [Table of Contents](../README.md) | [Next: discussion →](discussion.md)
+[← Previous: push](push.md) | [Table of Contents](../README.md) | [Next: pull_request_review →](pull-request-review.md)
 
 # `issue_comment` and `slash_command:`
 
@@ -30,6 +30,9 @@ title: "issue_comment and slash_command"
 
 **Why ⚠️:** `slash_command:` subscribes to a broad set of underlying events by default (every issue comment, PR review comment, issue/PR open/edit, discussion comment). Every one of those events spawns a workflow run that consumes a runner and participates in concurrency groups. The concurrency catastrophe (non-matching comment cancels in-flight `/command`) is the headline risk. Use `events:` to narrow the subscription.
 
+**Recommended alternative:**
+- **[`schedule`](schedule.md)** — for operations that don't require immediate triggering. Avoids the broad subscription, concurrency catastrophe, and spamming risks entirely.
+
 ## Profile
 
 | Dimension | Recommendation |
@@ -47,4 +50,4 @@ title: "issue_comment and slash_command"
 
 ---
 
-[← Previous: push](push.md) | [Table of Contents](../README.md) | [Next: discussion →](discussion.md)
+[← Previous: push](push.md) | [Table of Contents](../README.md) | [Next: pull_request_review →](pull-request-review.md)

@@ -2,7 +2,7 @@
 title: "release"
 ---
 
-[← Previous: workflow_dispatch](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)
+[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)
 
 # `release`
 
@@ -34,4 +34,4 @@ title: "release"
 
 ---
 
-[← Previous: workflow_dispatch](workflow-dispatch.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)
+[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)

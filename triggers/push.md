@@ -2,7 +2,7 @@
 title: "push"
 ---
 
-[← Previous: pull_request_target](pull-request-target.md) | [Table of Contents](../README.md) | [Next: issue_comment and slash_command: →](comment-and-slash-command.md)
+[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)
 
 # `push`
 
@@ -61,4 +61,4 @@ The PR head SHA changes on every push. Any artifact the workflow created (status
 
 ---
 
-[← Previous: pull_request_target](pull-request-target.md) | [Table of Contents](../README.md) | [Next: issue_comment and slash_command: →](comment-and-slash-command.md)
+[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)

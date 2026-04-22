@@ -2,7 +2,7 @@
 title: "workflow_call"
 ---
 
-[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: workflow_run →](workflow-run.md)
+[← Previous: discussion_comment](discussion-comment.md) | [Table of Contents](../README.md) | [Next: workflow_run →](workflow-run.md)
 
 # `workflow_call`
 
@@ -37,4 +37,4 @@ title: "workflow_call"
 
 ---
 
-[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: workflow_run →](workflow-run.md)
+[← Previous: discussion_comment](discussion-comment.md) | [Table of Contents](../README.md) | [Next: workflow_run →](workflow-run.md)

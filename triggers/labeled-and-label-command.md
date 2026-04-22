@@ -2,7 +2,7 @@
 title: "labeled and label_command"
 ---
 
-[← Previous: discussion_comment](discussion-comment.md) | [Table of Contents](../README.md) | [Next: pull_request_review →](pull-request-review.md)
+[← Previous: schedule](schedule.md) | [Table of Contents](../README.md) | [Next: issues →](issue.md)
 
 # `pull_request: types: [labeled]` and `label_command:`
 
@@ -40,4 +40,4 @@ title: "labeled and label_command"
 
 ---
 
-[← Previous: discussion_comment](discussion-comment.md) | [Table of Contents](../README.md) | [Next: pull_request_review →](pull-request-review.md)
+[← Previous: schedule](schedule.md) | [Table of Contents](../README.md) | [Next: issues →](issue.md)

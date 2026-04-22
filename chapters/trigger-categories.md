@@ -2,7 +2,7 @@
 title: "The Two Categories of Triggers"
 ---
 
-[← Previous: workflow_run](../triggers/workflow-run.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
+[← Previous: pull_request_target](../triggers/pull-request-target.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
 
 # The Two Categories of Triggers
 
@@ -93,4 +93,4 @@ gh-aw calls these **"trigger types"** but the docs themselves repeatedly note th
 
 ---
 
-[← Previous: workflow_run](../triggers/workflow-run.md)| [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)
+[← Previous: pull_request_target](../triggers/pull-request-target.md) | [Table of Contents](../README.md) | [Next: Apparent vs Actual →](apparent-vs-actual.md)

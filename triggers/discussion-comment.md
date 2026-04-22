@@ -2,7 +2,7 @@
 title: "discussion_comment"
 ---
 
-[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: labeled / label_command: →](labeled-and-label-command.md)
+[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: workflow_call →](workflow-call.md)
 
 # `discussion_comment`
 
@@ -19,6 +19,9 @@ title: "discussion_comment"
 - Marking a discussion as answered based on comment content
 
 **Why ⚠️:** A read-only user can create a discussion, immediately comment on it with any payload, and edit either freely. Same low-visibility concern as `discussion` — less monitored than issue/PR comments. The actor of the workflow outputs is `github-actions[bot]`, not the commenter — bot output appears to endorse/reply-to the commenter's content, lending upstream apparent authority to user-supplied narrative.
+
+**Recommended alternative:**
+- **[`schedule`](schedule.md)** — prefer periodic processing if immediate triggering is not needed. Avoids the spamming and untrusted-input surface.
 
 ## Profile
 
@@ -37,4 +40,4 @@ title: "discussion_comment"
 
 ---
 
-[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: labeled / label_command: →](labeled-and-label-command.md)
+[← Previous: discussion](discussion.md) | [Table of Contents](../README.md) | [Next: workflow_call →](workflow-call.md)

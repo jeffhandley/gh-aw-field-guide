@@ -2,7 +2,7 @@
 title: "workflow_dispatch"
 ---
 
-[← Previous: schedule](schedule.md) | [Table of Contents](../README.md) | [Next: release →](release.md)
+[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)
 
 # `workflow_dispatch`
 
@@ -37,4 +37,4 @@ title: "workflow_dispatch"
 
 ---
 
-[← Previous: schedule](schedule.md) | [Table of Contents](../README.md) | [Next: release →](release.md)
+[← Previous: Triggers](../chapters/triggers.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)

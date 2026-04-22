@@ -2,7 +2,7 @@
 title: "pull_request"
 ---
 
-[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)
+[← Previous: workflow_run](workflow-run.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)
 
 # `pull_request`
 
@@ -21,11 +21,10 @@ title: "pull_request"
 - Code-review assist (agentic review comments on the diff)
 - **The safer of the two PR triggers** — read-only `GITHUB_TOKEN`, no secrets for fork PRs. If you must react to PR events directly, this is the one to use over `pull_request_target`.
 
-**Why ⛔:** The existence of *any* `pull_request` workflow causes the "Approve and run workflows" button to appear for outside contributors' PRs, and clicking the button approves *all* gated workflows — including any `pull_request_target` workflows in the repo. This adds friction and alert fatigue without security value for `pull_request` itself (the token is already read-only, there are no secrets). **The button is presented even if the user does not match `on.roles:` and the workflow will immediately exit.**
+**Why ⛔:** The existence of *any* `pull_request` workflow causes the "Approve and run workflows" button to appear for outside contributors' PRs (including Copilot), and clicking the button approves *all* gated workflows — including any `pull_request_target` workflows in the repo. The trigger can be safely used, even with fork PRs (the token is already read-only, there are no secrets), but the button's existence creates alert fatigue that undermines the overall security model. **The button is presented even if the user does not match `on.roles:` and the workflow will immediately exit.**
 
 **Recommended alternatives:**
 - **[`schedule`](schedule.md)** — for periodic PR housekeeping (stale PR sweeps, label audits) that doesn't need to react in real-time.
-- **[`issue_comment` / `slash_command:`](comment-and-slash-command.md)** — for on-demand PR operations triggered by a maintainer's `/command` comment (not subject to the approval gate).
 - **[`pull_request: types: [labeled]` / `label_command:`](labeled-and-label-command.md)** — for PR operations triggered by a triage+ user applying a label.
 
 ## Profile
@@ -45,4 +44,4 @@ title: "pull_request"
 
 ---
 
-[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)
+[← Previous: workflow_run](workflow-run.md) | [Table of Contents](../README.md) | [Next: pull_request_target →](pull-request-target.md)

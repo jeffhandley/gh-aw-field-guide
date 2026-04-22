@@ -2,7 +2,7 @@
 title: "discussion"
 ---
 
-[← Previous: issue_comment / slash_command:](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: discussion_comment →](discussion-comment.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: discussion_comment →](discussion-comment.md)
 
 # `discussion`
 
@@ -19,6 +19,9 @@ title: "discussion"
 - FAQ automation — detect duplicate questions and link to existing answers
 
 **Why ⚠️:** `discussion` is a wide-open untrusted-input surface. Anyone with repository read access can create or edit a discussion — no approval gate, no fork boundary, yet much lower visibility/monitoring than issues or pull requests. The default `on.roles:` allowlist stops the agent step for read-role actors, but the activation job still queues a runner and any pre-agent step that touches discussion content runs anyway.
+
+**Recommended alternative:**
+- **[`schedule`](schedule.md)** — prefer periodic processing if immediate triggering is not needed. Avoids the spamming and untrusted-input surface.
 
 ## Profile
 
@@ -37,4 +40,4 @@ title: "discussion"
 
 ---
 
-[← Previous: issue_comment / slash_command:](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: discussion_comment →](discussion-comment.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Table of Contents](../README.md) | [Next: discussion_comment →](discussion-comment.md)

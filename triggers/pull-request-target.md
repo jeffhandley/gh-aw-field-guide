@@ -2,7 +2,7 @@
 title: "pull_request_target"
 ---
 
-[← Previous: pull_request](pull-request.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
+[← Previous: pull_request](pull-request.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
 
 # `pull_request_target` ⚠️
 
@@ -22,11 +22,10 @@ See also: [The "Approve and run workflows" Gate](../chapters/approve-and-run-gat
 - Reprocessing when PR head changes (via `synchronize`) — e.g., clearing "author action needed" state when the author pushes a fix.
 - **Never** for anything that checks out or executes PR head code.
 
-**Why ⛔:** Runs on the **base ref** with **full `GITHUB_TOKEN` and access to all secrets**, even for fork PRs. This is the trigger most likely to get a repo pwned. The approval gate compounds the danger — clicking approves *all* gated workflows, including this one with full secrets. Assume the button will always be clicked — by someone trying to approve a different workflow. Same as `pull_request`, the button is presented even if the contributor doesn't match `on.roles:` and the workflow will immediately exit.
+**Why ⛔:** Runs on the **base ref** with **full `GITHUB_TOKEN` and access to all secrets**, even for fork PRs. This is the trigger most likely to get a repo pwned. The trigger can be safely used when extreme care is taken, but the approval gate compounds the danger — clicking approves *all* gated workflows, including this one with full secrets. The button's existence creates alert fatigue that undermines the security model. Same as `pull_request`, the button is presented even if the contributor doesn't match `on.roles:` and the workflow will immediately exit.
 
 **Recommended alternatives:**
 - **[`schedule`](schedule.md)** — preferred. Not subject to event spamming or user-triggered invocations. Acts as a polling job. Subject to the same idempotency requirements as other alternatives, but concurrency is substantially more straightforward.
-- **[`issue_comment` / `slash_command:`](comment-and-slash-command.md)** — for on-demand PR operations triggered by a maintainer's `/command`. Not subject to the approval gate.
 - **[`pull_request: types: [labeled]` / `label_command:`](labeled-and-label-command.md)** — for PR operations triggered by a triage+ user applying a label.
 
 ## Profile
@@ -46,4 +45,4 @@ See also: [The "Approve and run workflows" Gate](../chapters/approve-and-run-gat
 
 ---
 
-[← Previous: pull_request](pull-request.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
+[← Previous: pull_request](pull-request.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)

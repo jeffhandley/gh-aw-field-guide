@@ -2,7 +2,7 @@
 title: "pull_request_review"
 ---
 
-[← Previous: pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)
+[← Previous: issue_comment / slash_command:](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)
 
 # `pull_request_review`
 
@@ -22,6 +22,10 @@ title: "pull_request_review"
 
 **Why ⚠️:** "A review was submitted" is not "the PR was approved." The event fires for any review type including `COMMENT`-type reviews that any read-role user can submit. This trigger is rarely standalone; it usually shares a workflow with `pull_request` and `issue_comment`, creating a multi-trigger concurrency nightmare.
 
+**Recommended alternatives:**
+- **[`schedule`](schedule.md)** — poll for PRs with recent approvals periodically. Avoids the concurrency nightmare entirely.
+- **[`labeled` / `label_command:`](labeled-and-label-command.md)** — a maintainer applies a label to signal the PR is ready for post-approval automation.
+
 ## Profile
 
 | Dimension | Recommendation |
@@ -39,4 +43,4 @@ title: "pull_request_review"
 
 ---
 
-[← Previous: pull_request: types: [labeled]` and `label_command:`](labeled-and-label-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)
+[← Previous: issue_comment / slash_command:](comment-and-slash-command.md) | [Table of Contents](../README.md) | [Next: pull_request_review_comment →](pull-request-review-comment.md)

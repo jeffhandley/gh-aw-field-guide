@@ -2,7 +2,7 @@
 title: "workflow_run"
 ---
 
-[← Previous: workflow_call](workflow-call.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
+[← Previous: workflow_call](workflow-call.md) | [Table of Contents](../README.md) | [Next: pull_request →](pull-request.md)
 
 # `workflow_run` ⚠️
 
@@ -21,7 +21,7 @@ title: "workflow_run"
 
 **Recommended alternatives:**
 - **[`schedule`](schedule.md)** — poll for completed CI runs periodically instead of reacting in real-time. Avoids the artifact-smuggling vector entirely.
-- **[`issue_comment` / `slash_command:`](comment-and-slash-command.md)** — maintainer explicitly triggers post-CI actions via a `/command` after reviewing the results.
+- **[`labeled` / `label_command:`](labeled-and-label-command.md)** — a maintainer applies a label after reviewing CI results to trigger post-CI actions.
 
 ## Profile
 
@@ -40,4 +40,4 @@ title: "workflow_run"
 
 ---
 
-[← Previous: workflow_call](workflow-call.md) | [Table of Contents](../README.md) | [Next: The Two Categories of Triggers →](../chapters/trigger-categories.md)
+[← Previous: workflow_call](workflow-call.md) | [Table of Contents](../README.md) | [Next: pull_request →](pull-request.md)

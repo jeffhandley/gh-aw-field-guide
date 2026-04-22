@@ -2,7 +2,7 @@
 title: "pull_request_review_comment"
 ---
 
-[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)
+[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: discussion →](discussion.md)
 
 # `pull_request_review_comment`
 
@@ -19,6 +19,10 @@ title: "pull_request_review_comment"
 - Auto-resolving review threads when the referenced code changes
 
 **Why ⚠️:** The trigger nobody remembers exists. Inline comments are tied to specific code lines, which is a high-leverage surface for positioning attacker content adjacent to code the agent reasons about. When mixed into a multi-trigger workflow alongside `pull_request` and `pull_request_review`, concurrency group-key choice becomes very difficult.
+
+**Recommended alternatives:**
+- **[`schedule`](schedule.md)** — poll for PRs with pending inline comments periodically.
+- **[`labeled` / `label_command:`](labeled-and-label-command.md)** — a maintainer applies a label to signal the PR is ready for agent-assisted review response.
 
 ## Profile
 
@@ -37,4 +41,4 @@ title: "pull_request_review_comment"
 
 ---
 
-[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: schedule →](schedule.md)
+[← Previous: pull_request_review](pull-request-review.md) | [Table of Contents](../README.md) | [Next: discussion →](discussion.md)

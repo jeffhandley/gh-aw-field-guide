@@ -2,7 +2,7 @@
 title: "milestone"
 ---
 
-[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: workflow_call →](workflow-call.md)
+[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
 
 # `milestone`
 
@@ -38,4 +38,4 @@ Deleting a milestone removes it from all assigned issues/PRs, firing `issues.dem
 
 ---
 
-[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: workflow_call →](workflow-call.md)
+[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
