@@ -2,7 +2,7 @@
 title: "Authorization, Roles, and Read-Only Contributors"
 ---
 
-[← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
+[← Previous: Concurrency and Race Conditions](concurrency-and-races.md) | [Table of Contents](../README.md) | [Next: Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
 
 # Authorization, Roles, and Read-Only Contributors
 
@@ -31,14 +31,14 @@ Here is what each role can do *that fires a workflow* — at the GitHub event la
 
 **Key observation:** A reader can fire any [`slash_command:`](../triggers/comment-and-slash-command.md) and any `issues`/`issue_comment`/`pull_request`/`discussion_comment`/`reaction`-driven workflow, just by typing or clicking. They cannot fire `label_command:` or `workflow_dispatch:` triggered ones.
 
-## gh-aw's `on.roles:` allowlist (the *primary* authz mechanism)
+## gh-aw's `on.roles:` allow-list (the *primary* authz mechanism)
 
-gh-aw automatically injects an **activation-job membership check** into any workflow whose triggers include "unsafe" events (issues, comments, PRs, discussions, slash/label commands). The allowlist is configured by `on.roles:` and **defaults to `[admin, maintainer, write]`**[^role-checks-go]. Behaviors:
+gh-aw automatically injects an **activation-job membership check** into any workflow whose triggers include "unsafe" events (issues, comments, PRs, discussions, slash/label commands). The allow-list is configured by `on.roles:` and **defaults to `[admin, maintainer, write]`**[^role-checks-go]. Behaviors:
 
 - **String form** — `on.roles: write` (single role) or `on.roles: all` (special value disabling the check entirely).
 - **Array form** — `on.roles: [admin, maintainer, write]` (the default) or `on.roles: [admin, maintainer, write, triage, read]` to broaden.
-- **Inverse field** — `on.skip-roles: [role,...]` blocks specific roles from a wider allowlist (e.g., `on.roles: all` + `on.skip-roles: [read]`).
-- **The check still consumes a runner.** Like other activation-job filters, the workflow *runs* and the activation job calls the GitHub repo permission API; the agent job is then skipped if the actor's role is not in the allowlist.
+- **Inverse field** — `on.skip-roles: [role,...]` blocks specific roles from a wider allow-list (e.g., `on.roles: all` + `on.skip-roles: [read]`).
+- **The check still consumes a runner.** Like other activation-job filters, the workflow *runs* and the activation job calls the GitHub repo permission API; the agent job is then skipped if the actor's role is not in the allow-list.
 - **`on.roles: all` is required for any chat-style workflow that intentionally serves read-only contributors** — for example, a self-service `/help` command or a community FAQ bot.
 - **Does not protect against [`workflow_run`](../triggers/workflow-run.md) chained workflows** (which run as the base repo, not as the original actor).
 
@@ -54,9 +54,9 @@ gh-aw automatically injects an **activation-job membership check** into any work
 | (anonymous fork contributor) | ❌ | Treated as `read` for membership API purposes |
 | `bot` actor | (inherits the bot's permission level) | Use `on.skip-bots:` to block specific bot logins |
 
-**`triage` is invisible in the default allowlist** — that means a workflow like [`label_command:`](../triggers/labeled-and-label-command.md) (which requires triage to apply the label in the first place) will *fire* but its activation job will *deny* a triage user unless `on.roles:` is broadened. This is a frequent footgun.
+**`triage` is invisible in the default allow-list** — that means a workflow like [`label_command:`](../triggers/labeled-and-label-command.md) (which requires triage to apply the label in the first place) will *fire* but its activation job will *deny* a triage user unless `on.roles:` is broadened. This is a frequent footgun.
 
-## Consolidated read-only / fork contributor write surface 🛑
+## Consolidated read-only / fork contributor write surface
 
 The single most important security insight in this guide:
 
@@ -68,26 +68,26 @@ This is why the gh-aw `on.roles:` default of `[admin, maintainer, write]` exists
 
 The triggers are grouped by their security posture — triggers with identical column values are combined.
 
-Legend: ✅ = reachable; ⚠️ = reachable but with caveats; ❌ = not reachable via this trigger; 🛑 = reachable AND the workflow runs with **upstream secrets** (the high-impact pwn vector).
+Legend: ✅ = reachable; ⚠️ = reachable but with caveats; ❌ = not reachable via this trigger; = reachable AND the workflow runs with **upstream secrets** (the high-impact pwn vector).
 
 | Action | `issues`, `discussion`, `slash_command` on issue | `issue_comment` on fork PR, `slash_command` on fork PR | `pull_request` (cross-fork) | `pull_request_target` (cross-fork) |
 |---|---|---|---|---|
-| Post a comment | ✅ | 🛑 | ⚠️ read-only token | 🛑 |
-| Add/remove labels | ✅ | 🛑 | ⚠️ | 🛑 |
-| Edit issue/PR title or body | ✅ | 🛑 | ⚠️ | 🛑 |
-| Close/reopen issue or PR | ✅ | 🛑 | ⚠️ | 🛑 |
+| Post a comment | ✅ | | ⚠️ read-only token | |
+| Add/remove labels | ✅ | | ⚠️ | |
+| Edit issue/PR title or body | ✅ | | ⚠️ | |
+| Close/reopen issue or PR | ✅ | | ⚠️ | |
 | Edit/delete existing comments | ❌ | ❌ | ❌ | ❌ |
-| Create a new issue | ✅ | 🛑 | ⚠️ | 🛑 |
-| Create a new pull request | ✅ | 🛑 | ⚠️ | 🛑 |
+| Create a new issue | ✅ | | ⚠️ | |
+| Create a new pull request | ✅ | | ⚠️ | |
 | Push commits to PR branch | ❌ | ⚠️ same-repo only | ❌ | ⚠️ same-repo only |
-| Create a discussion | ✅ | 🛑 | ⚠️ | 🛑 |
-| Trigger downstream `workflow_dispatch` | ✅ | 🛑 | ⚠️ | 🛑 |
-| Read/exfiltrate secrets | ✅ | 🛑 | ❌ no secrets | 🛑 |
+| Create a discussion | ✅ | | ⚠️ | |
+| Trigger downstream `workflow_dispatch` | ✅ | | ⚠️ | |
+| Read/exfiltrate secrets | ✅ | | ❌ no secrets | |
 | Approve a PR | ❌ | ❌ | ❌ | ❌ |
-| Merge a PR | ✅ | 🛑 | ⚠️ | 🛑 |
+| Merge a PR | ✅ | | ⚠️ | |
 | Admin actions (collaborators, branch protection) | ❌ | ❌ | ❌ | ❌ |
 
-**How to read the 🛑 column intersections.** A 🛑 means: a contributor with **only read access** (or none — anonymous fork contributors via PR comments) can, just by typing a `/command` or comment, induce the bot to perform the listed mutation **using the upstream's secrets and write token**. This is the gh-aw-flavored re-statement of the classic "pwn requests" class[^pwn-requests] and is the entire reason `on.roles:` defaults to `[admin, maintainer, write]`.
+**How to read the column intersections.** A means: a contributor with **only read access** (or none — anonymous fork contributors via PR comments) can, just by typing a `/command` or comment, induce the bot to perform the listed mutation **using the upstream's secrets and write token**. This is the gh-aw-flavored re-statement of the classic "pwn requests" class[^pwn-requests] and is the entire reason `on.roles:` defaults to `[admin, maintainer, write]`.
 
 **Defenses, in priority order:**
 
@@ -126,18 +126,16 @@ The MCP gateway intercepts tool calls to GitHub and filters content by author tr
 
 | `on.roles:` | `min-integrity` | Effect |
 |---|---|---|
-| Default `[admin, maintainer, write]` | `approved` | **Most restrictive.** Only trusted actors trigger the agent, and the agent only sees trusted content. |
-| Default `[admin, maintainer, write]` | `unapproved` / `none` | Agent only runs for trusted actors, but can read community content during execution. Appropriate for workflows like post-merge scans that need to find community issues resolved by a push. |
+| `[admin, maintainer, write]` (default) | `approved` | **Most restrictive.** Only trusted actors trigger the agent, and the agent only sees trusted content. |
+| `[admin, maintainer, write]` (default) | `unapproved` / `none` | Agent only runs for trusted actors, but can read community content during execution. Appropriate for workflows like post-merge scans that need to find community issues resolved by a push. |
 | `all` | `approved` | **Two-layer defense.** Any actor can trigger the agent, but the agent only sees content from trusted authors. The integrity filter is the primary content-trust boundary. |
 | `all` | `unapproved` / `none` | **Widest exposure.** Any actor triggers the agent, and the agent sees community content. Must pair with minimal `safe-outputs` — the only remaining constraint on blast radius. |
 
 Each trigger page includes an **Integrity filtering** row in its profile table with the specific recommendation. See the [integrity filtering reference](https://github.github.com/gh-aw/reference/integrity/) for full configuration options including `blocked-users`, `trusted-users`, `approval-labels`, and reaction-based endorsement.
-
-📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
 [^role-checks-go]: gh-aw source, [`pkg/workflow/role_checks.go`](https://github.com/github/gh-aw/blob/main/pkg/workflow/role_checks.go)
 [^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
 
 ---
 
-[← Previous: Concurrency and Race Conditions](concurrency-and-races.md)| [Table of Contents](../README.md) | [Next: Appendix A — Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)
+[← Previous: Concurrency and Race Conditions](concurrency-and-races.md)| [Table of Contents](../README.md) | [Next: Trigger-by-Trigger Risk Profile →](../appendices/trigger-risk-profile.md)

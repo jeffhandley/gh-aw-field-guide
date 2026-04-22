@@ -2,7 +2,7 @@
 title: "release"
 ---
 
-[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)
+[← Previous: schedule](schedule.md) | [Common Triggers](../chapters/triggers.md) | [Next: milestone →](milestone.md)
 
 # `release`
 
@@ -27,11 +27,11 @@ title: "release"
 | Idempotency | **Required.** Releases can be deleted and re-created, or edited after publication — downstream automation must be safe to repeat. |
 | Fork posture | Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` to prevent running within a user's fork. Releases are upstream-only but forked repos can create their own. |
 | Approval gate | Not subject to the "Approve and run workflows" button. |
-| Bot/Copilot events | Releases created via `GITHUB_TOKEN` **do not** trigger. Releases via GitHub App tokens or PATs **do**. |
+| Copilot events | Releases created via `GITHUB_TOKEN` **do not** trigger. Releases via GitHub App tokens or PATs **do**. |
 | Sanitize payload? | Release name and body are maintainer-controlled and generally trusted (write access required). Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `create-issue`, `add-comment`, `create-discussion`, `create-pull-request` for post-release automation. `workflow_dispatch` via `gh workflow run` if triggering downstream workflows. |
 | Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` or `none` when scanning community issues to close resolved items — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
 
 ---
 
-[← Previous: issues](issue.md) | [Table of Contents](../README.md) | [Next: milestone →](milestone.md)
+[← Previous: schedule](schedule.md) | [Common Triggers](../chapters/triggers.md) | [Next: milestone →](milestone.md)

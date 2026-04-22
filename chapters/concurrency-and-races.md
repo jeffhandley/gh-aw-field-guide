@@ -36,8 +36,7 @@ This is the **non-matching-cancels-matching pathology**. Mitigations:
 1. **Narrow `slash_command` `events:`** so the workflow doesn't subscribe to events that can't possibly match — e.g., `events: [issue_comment]` when the slash command will only ever appear in comments.
 2. **Make the concurrency group depend on the activation outcome.** This is hard — `concurrency:` is evaluated *before* the job starts and cannot reference job outputs. The practical workaround is to make the group narrower (e.g., include `${{ github.event.comment.id }}`) so unrelated events don't share the group.
 3. **Don't set `cancel-in-progress: true`** for slash-command workflows; let them queue.
-4. **Use `lock-for-agent: true`** for issue/PR mutations so even concurrent runs serialize against the issue lock.
-5. **Make agent-side mutations idempotent** (use deterministic comment markers, upsert labels, check for existing PRs) so a re-run produces the same end state.
+4. **Make outputs idempotent** (use deterministic comment markers, upsert labels, check for existing PRs) so a re-run produces the same end state.
 
 ## The pre-cancellation race
 
@@ -48,8 +47,6 @@ Even without conflicting groups, **steps that have already started will complete
 - A `bash` step mid-execution may write partial files, push partial commits, etc.
 
 Concurrency is not a substitute for idempotency.
-
-📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
 
 [^concurrency]: GitHub Docs, [Using concurrency](https://docs.github.com/en/actions/using-jobs/using-concurrency)
 

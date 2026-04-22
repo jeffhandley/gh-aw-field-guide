@@ -2,15 +2,15 @@
 title: "push"
 ---
 
-[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Common Triggers](../chapters/triggers.md) | [Next: discussion →](discussion.md)
 
 # `push`
 
 ### ⚠️ Use with caution
 
-> 🛑 **`push` is one of the highest-volume triggers in the repo and the easiest to subscribe to overbroadly.** A workflow declared as just `on: push` (no `branches:` filter) fires on every push to every branch by anyone with write access — including bot branches, dependency-update branches, codeflow branches, and short-lived feature branches that no one expected the workflow to care about. For an agentic workflow that consumes Copilot tokens per run, the cost blowout is silent until the bill arrives — this is the trigger most likely to turn "it's just a PoC" into a line-item on next month's invoice. The fix is always-explicit `branches:` filters and a narrow subscription that matches the actual workflow intent.
->
-> *Concurrency twist:* rapid pushes to a feature branch (rebasing, force-pushing) stack up runs unless `concurrency.cancel-in-progress: true` is set — which in turn re-creates the race condition (see [Concurrency and Race Conditions](../chapters/concurrency-and-races.md)) where the canceled run was halfway through a write that the next push won't redo.
+**`push` is one of the highest-volume triggers in the repo and the easiest to subscribe to overbroadly.** A workflow declared as just `on: push` (no `branches:` filter) fires on every push to every branch by anyone with write access — including bot branches, dependency-update branches, codeflow branches, and short-lived feature branches that no one expected the workflow to care about. For an agentic workflow that consumes Copilot tokens per run, the cost blowout is silent until the bill arrives — this is the trigger most likely to turn "it's just a PoC" into a line-item on next month's invoice. The fix is always-explicit `branches:` filters and a narrow subscription that matches the actual workflow intent.
+
+*Concurrency twist:* rapid pushes to a feature branch (rebasing, force-pushing) stack up runs unless `concurrency.cancel-in-progress: true` is set — which in turn re-creates the race condition (see [Concurrency and Race Conditions](../chapters/concurrency-and-races.md)) where the canceled run was halfway through a write that the next push won't redo.
 
 ---
 
@@ -31,7 +31,7 @@ title: "push"
 | Idempotency | **Recommended.** Force-pushes rewrite history and can invalidate prior-run artifacts. |
 | Fork posture | Forks push to their own fork; does not propagate to upstream. Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` to prevent running within a user's fork. |
 | Approval gate | Not subject to the "Approve and run workflows" button. |
-| Bot/Copilot events | Pushes via `GITHUB_TOKEN` **do not** trigger `push`. Pushes by GitHub Apps with installation tokens or PATs **do**. |
+| Copilot events | Pushes via `GITHUB_TOKEN` **do not** trigger `push`. Pushes by GitHub Apps with installation tokens or PATs **do**. |
 | Sanitize payload? | Commit messages are user-controlled but generally trusted (write access required to push). |
 | Safe-outputs | Depends on workflow purpose — `add-comment` on linked issues, `create-issue` for release tracking. |
 | Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` when the workflow intentionally consumes community content (e.g., scanning community issues resolved by the push) — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
@@ -61,4 +61,4 @@ The PR head SHA changes on every push. Any artifact the workflow created (status
 
 ---
 
-[← Previous: milestone](milestone.md) | [Table of Contents](../README.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)
+[← Previous: pull_request_review_comment](pull-request-review-comment.md) | [Common Triggers](../chapters/triggers.md) | [Next: discussion →](discussion.md)
