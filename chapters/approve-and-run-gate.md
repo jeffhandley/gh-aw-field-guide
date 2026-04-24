@@ -1,10 +1,10 @@
 ---
-title: "The "Approve and run workflows" Gate"
+title: "The 'Approve and run workflows' Gate"
 ---
 
-[← Previous: Apparent vs Actual](apparent-vs-actual.md) | [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
+[← Previous: pull_request_target](../triggers/pull-request-target.md) | [Table of Contents](../README.md) | [Next: The "Apparent vs. Actual" Trigger Surface →](apparent-vs-actual.md)
 
-# The "Approve and run workflows" Gate 🛑
+# The "Approve and run workflows" Gate
 
 GitHub gates workflow execution from forks behind a manual approval click ("Approve and run workflows"), governed by repo/org **Actions → General → Fork pull request workflows from outside collaborators** setting[^approval-docs][^approval-policy]:
 
@@ -17,7 +17,7 @@ GitHub gates workflow execution from forks behind a manual approval click ("Appr
 
 **The gate applies to `pull_request` and `pull_request_target`.** It does **not** apply to:
 
-- [`issue_comment`](../triggers/comment-and-slash-command.md) (even on PRs from forks!) — a read-only contributor can therefore always *fire* a [`slash_command:`](../triggers/comment-and-slash-command.md) from a comment on their own PR without a click. **The agent step still won't run** unless `on.roles:` includes their permission level (default allowlist excludes `read`).
+- [`issue_comment`](../triggers/comment-and-slash-command.md) (even on PRs from forks!) — a read-only contributor can therefore always *fire* a [`slash_command:`](../triggers/comment-and-slash-command.md) from a comment on their own PR without a click. **The agent step still won't run** unless `on.roles:` includes their permission level (default allow-list excludes `read`).
 - [`discussion`](../triggers/discussion.md), [`discussion_comment`](../triggers/discussion-comment.md) — never gated.
 - [`issues`](../triggers/issue.md) — never gated; anyone with read access can open one.
 - [`workflow_dispatch`](../triggers/workflow-dispatch.md) — never gated, but **requires write access to invoke**.
@@ -31,11 +31,11 @@ The "Approve and run workflows" button looks like a security feature. **Treat it
 
 1. **Alert fatigue.** Every first-time fork contributor produces a button click that lists *every* workflow the PR touches. A repo with 15 workflows shows 15 entries. After the maintainer has clicked through dozens of legitimate first-time PRs, the click becomes muscle memory. The hundredth click is no more deliberate than the first.
 2. **The UI does not show what is being approved.** There is no per-workflow toggle, no preview of the diff, no preview of the events the workflows are subscribed to, no list of secrets that will be exposed, no indication that some workflows use `pull_request_target` (full secrets, write token) versus plain `pull_request` (read-only, no secrets). The maintainer is approving an opaque blob of YAML files they have likely never read.
-3. **A single click runs all of them.** There is no way to approve only the safe ones. Approving the CI workflow you actually wanted to run *also* approves the labeler, the auto-merge bot, the slash-command listener, and any `pull_request_target` workflow in the repo.
+3. **A single click runs all of them.** The only way approve only the safe ones is through the Actions UI, but even there it's difficult to see the potential ramifications for approvals. Approving the CI workflow you actually wanted to run *also* approves the auto-merge workflow, the slash-command listener, and any `pull_request_target` workflow in the repo. Worse yet, you could also be approving workflows _included in the pull request's changes_.
 
 **Concrete failure modes when a maintainer clicks the button because they "think they're supposed to":**
 
-- A [`pull_request_target`](../triggers/pull-request-target.md) workflow that does `actions/checkout@v4` with `ref: ${{ github.event.pull_request.head.sha }}` (an extremely common mistake) **executes attacker-controlled code with the upstream's secrets in the environment**. Game over: secrets exfiltrated, NPM packages republished, releases tagged, branches force-pushed[^pwn-requests].
+- A [`pull_request_target`](../triggers/pull-request-target.md) workflow that does `actions/checkout@v4` with `ref: ${{ github.event.pull_request.head.sha }}` (an extremely common mistake) **executes attacker-controlled code with the upstream's secrets in the environment**. Game over: secrets exfiltrated, packages republished, releases tagged, branches force-pushed[^pwn-requests].
 - A [`slash_command:`](../triggers/comment-and-slash-command.md) workflow whose `on.roles:` was relaxed to `all` (perhaps to support a community `/help` bot) sees the attacker's PR body containing `/help` (or whatever command), passes its activation job, and the agent runs with the workflow's full `permissions:` and `safe-outputs:` — see [Authorization, Roles, and Read-Only Contributors](authorization-and-roles.md) for the full capability surface.
 - A `slash_command:` workflow that's also subscribed to `pull_request` (the default) gets approved alongside everything else — its activation job runs against the PR body and, if the magic word is there, the agent fires.
 - A workflow that posts comments on the PR runs as the upstream `github-actions[bot]`, lending **upstream's apparent authority** to attacker-supplied output (e.g., a fake "✅ All checks passed — safe to merge" comment).
@@ -49,12 +49,10 @@ The "Approve and run workflows" button looks like a security feature. **Treat it
 - Pin `safe-outputs:` to the minimum required and audit the resulting blast radius via [Authorization, Roles, and Read-Only Contributors](authorization-and-roles.md).
 - For any workflow that *must* be powerful, gate the agent step on `github.event.pull_request.head.repo.fork == false` so it refuses to act on cross-fork PRs entirely — and rely on the approval gate **only as defense-in-depth**, never as the primary control.
 
-📚 See [Appendix B: Footnotes](../appendices/footnotes.md) for source citations.
-
 [^approval-docs]: GitHub Docs, [Approving workflow runs from public forks](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/approving-workflow-runs-from-public-forks)
 [^approval-policy]: GitHub Docs, [Managing GitHub Actions settings for a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository)
 [^pwn-requests]: GitHub Security Lab, [Keeping your GitHub Actions and workflows secure: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
 
 ---
 
-[← Previous: Apparent vs Actual](apparent-vs-actual.md)| [Table of Contents](../README.md) | [Next: Operating Within a Fork →](operating-in-a-fork.md)
+[← Previous: pull_request_target](../triggers/pull-request-target.md)| [Table of Contents](../README.md) | [Next: The "Apparent vs. Actual" Trigger Surface →](apparent-vs-actual.md)

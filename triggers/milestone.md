@@ -2,13 +2,13 @@
 title: "milestone"
 ---
 
-[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
+[← Previous: release](release.md) | [Common Triggers](../chapters/triggers.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)
 
 # `milestone`
 
 ### ✅ Recommended
 
-> 🛑 **`milestone.closed` is a cascade trigger that workflows underestimate.** Closing a milestone is a single admin action that does NOT itself fire issue events — but **DELETING** a milestone removes it from all assigned issues/PRs, firing `issues.demilestoned` (and `pull_request.demilestoned`) for every one of them in rapid succession. A workflow that listens on `*.demilestoned` to react (move from a project, change labels, post a comment) will fire N times in seconds when a milestone with N items is deleted. Combined with `cancel-in-progress: true` concurrency, only the last one runs and earlier reactions are silently lost; without it, runner minutes balloon. Same naming-collision footgun as [`label`](labeled-and-label-command.md): `on: milestone` is **not** `on: issues: types: [milestoned]`.
+This trigger is recommended for automated release management workflows that trigger on the closure of a milestone, which is a privileged operation. This is different from the `issues.milestoned` and `issues.demilestoned` triggers.
 
 ---
 
@@ -27,7 +27,7 @@ title: "milestone"
 | Idempotency | **Required.** The workflow must be safe to repeat if the milestone is reopened/reclosed. |
 | Fork posture | Apply `if: ${{ github.event_name == 'workflow_dispatch' \|\| !github.event.repository.fork }}` to prevent running within a user's fork. |
 | Approval gate | Not subject to the "Approve and run workflows" button. |
-| Bot/Copilot events | Milestone operations via `GITHUB_TOKEN` **do not** trigger. Operations via GitHub App tokens or PATs **do**. |
+| Copilot events | See [Bot Filtering](https://github.github.com/gh-aw/reference/frontmatter/#bot-filtering-onbots) and [Skip Bots](https://github.github.com/gh-aw/reference/frontmatter/#skip-bots-onskip-bots). |
 | Sanitize payload? | Milestone title and description are maintainer-controlled and generally trusted (write access required). Issue/PR bodies linked to the milestone remain user-controlled — sanitize those if ingested. Acceptable to handle unsanitized payload within the agent job (sandboxed), coupled with proper `safe-outputs`. |
 | Safe-outputs | `create-issue`, `add-comment`, `add-labels`, `create-pull-request`, `update-issue`, `create-discussion` for release automation. `workflow_dispatch` via `gh workflow run` if triggering downstream workflows. |
 | Integrity filtering | `approved` (default) for outputs that require triage+ permissions. `unapproved` or `none` when scanning community issues in the milestone — must pair with tight `safe-outputs`. See [standard guidance](../chapters/authorization-and-roles.md#standard-guidance). |
@@ -38,4 +38,4 @@ Deleting a milestone removes it from all assigned issues/PRs, firing `issues.dem
 
 ---
 
-[← Previous: release](release.md) | [Table of Contents](../README.md) | [Next: push →](push.md)
+[← Previous: release](release.md) | [Common Triggers](../chapters/triggers.md) | [Next: issue_comment / slash_command: →](comment-and-slash-command.md)
