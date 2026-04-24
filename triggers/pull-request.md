@@ -6,7 +6,7 @@ title: "pull_request"
 
 # `pull_request`
 
-### ⛔ Avoid (public repos) · ☢️ Use with extreme caution (private repos)
+### ⛔ Avoid (public repos)<br />☢️ Use with extreme caution (private repos)
 
 > **In private repositories, this trigger is ☢️ Use with extreme caution.** There are no outside contributors, so the "Approve and run workflows" button — the primary driver of the ⛔ rating — does not apply. However, the trigger is elevated to ☢️ (rather than fully recommended) for defense-in-depth and to maintain consistent practices across repositories.
 

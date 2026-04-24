@@ -6,7 +6,7 @@ title: "pull_request_target"
 
 # `pull_request_target`
 
-### ⛔ Avoid (public repos) · ☢️ Use with extreme caution (private repos)
+### ⛔ Avoid (public repos)<br />☢️ Use with extreme caution (private repos)
 
 > **In private repositories, this trigger is ☢️ Use with extreme caution.** There are no outside contributors, so the fork-attacker vector and the "Approve and run workflows" button do not apply. However, the full-secrets footgun remains regardless of repo visibility — checking out PR head code in a job with secrets is dangerous even when all contributors are trusted. The trigger is elevated to ☢️ (rather than fully recommended) for defense-in-depth and to maintain consistent practices across repositories.
 

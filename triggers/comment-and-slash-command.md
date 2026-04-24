@@ -6,7 +6,7 @@ title: "issue_comment and slash_command"
 
 # `issue_comment` and `slash_command:`
 
-### ⚠️ Use with caution (public repos) · ✅ Recommended (private repos)
+### ⚠️ Use with caution (public repos)<br />✅ Recommended (private repos)
 
 > **In private repositories, this trigger is ✅ Recommended.** All actors in a private repo have been granted access by the organization — there are no anonymous or untrusted contributors. This eliminates the privilege-escalation and spamming risks that drive the ⚠️ classification in public repos. The concurrency/idempotency challenges from the broad event subscription are substantially less problematic in private repos and can be accepted.
 
