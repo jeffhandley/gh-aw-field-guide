@@ -6,7 +6,9 @@ title: "pull_request_target"
 
 # `pull_request_target`
 
-### ⛔ Avoid
+### ⛔ Avoid (public repos) · ☢️ Use with extreme caution (private repos)
+
+> **In private repositories, this trigger is ☢️ Use with extreme caution.** There are no outside contributors, so the fork-attacker vector and the "Approve and run workflows" button do not apply. However, the full-secrets footgun remains regardless of repo visibility — checking out PR head code in a job with secrets is dangerous even when all contributors are trusted. The trigger is elevated to ☢️ (rather than fully recommended) for defense-in-depth and to maintain consistent practices across repositories.
 
 **`pull_request_target` is the trigger most likely to get a repo pwned, *and the approve-and-run gate is the booby trap that springs it*.** `pull_request` from forks runs sandboxed (read-only token, no secrets). Maintainers reach for `pull_request_target` to get write tokens and secrets back.
 

@@ -76,7 +76,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Fork guard:** `if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.fork }}`
 - **Integrity filtering:** `approved` (default) for outputs that require triage+ permissions. `unapproved` for post-merge scans that find community issues resolved by the push (e.g., commenting or closing resolved issues), paired with tight `safe-outputs`.
 
-## [`issue_comment`](../triggers/comment-and-slash-command.md) / [`slash_command:`](../triggers/comment-and-slash-command.md) — ⚠️ Use with caution
+## [`issue_comment`](../triggers/comment-and-slash-command.md) / [`slash_command:`](../triggers/comment-and-slash-command.md) — ⚠️ Use with caution (public) · ✅ Recommended (private)
 - **Authz:** Read (anyone can comment). `on.roles: all` acceptable for community-facing commands.
 - **Approval gate:** **Not subject** — even on fork PRs. Key advantage over `pull_request`.
 - **Copilot events:** `GITHUB_TOKEN` does not trigger; GitHub App tokens/PATs do.
@@ -133,7 +133,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Alternatives:** [`schedule`](../triggers/schedule.md), [`issue_comment`/`slash_command:`](../triggers/comment-and-slash-command.md).
 - **Integrity filtering:** `approved`; `merged` for production-content-only workflows. `unapproved`/`none` carries full-secrets warning. Does not filter downloaded artifacts.
 
-## [`pull_request`](../triggers/pull-request.md) — ⛔ Avoid
+## [`pull_request`](../triggers/pull-request.md) — ⛔ Avoid (public) · ☢️ Use with extreme caution (private)
 - **Authz:** Anyone who can open a PR (incl. fork contributors). `on.roles: all` is acceptable.
 - **Approval gate:** **Subject.** The existence of *any* `pull_request` workflow causes the button, and clicking approves *all* gated workflows. Button appears even when the contributor doesn't match `on.roles:`.
 - **Copilot events:** `GITHUB_TOKEN` does not trigger; GitHub App tokens/PATs do.
@@ -143,7 +143,7 @@ This appendix also covers triggers **without** a standalone page (e.g., `reposit
 - **Alternatives:** [`schedule`](../triggers/schedule.md), [`issue_comment`/`slash_command:`](../triggers/comment-and-slash-command.md), [`labeled`/`label_command:`](../triggers/labeled-and-label-command.md).
 - **Integrity filtering:** `approved`. Fork contributors are typically `CONTRIBUTOR` or lower, so their PR content is filtered out before the agent sees it.
 
-## [`pull_request_target`](../triggers/pull-request-target.md) — ⛔ Avoid
+## [`pull_request_target`](../triggers/pull-request-target.md) — ⛔ Avoid (public) · ☢️ Use with extreme caution (private)
 - **Authz:** Same actors as `pull_request`. `on.roles: all` only with ☢️ extreme caution.
 - **Approval gate:** **Subject** — and this is where it's most dangerous. Clicking approves *all* gated workflows with full secrets. Assume the button will always be clicked — by someone trying to approve a different workflow.
 - **Copilot events:** `GITHUB_TOKEN` does not trigger; GitHub App tokens/PATs do.

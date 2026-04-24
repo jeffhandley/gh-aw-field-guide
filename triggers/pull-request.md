@@ -6,7 +6,9 @@ title: "pull_request"
 
 # `pull_request`
 
-### ⛔ Avoid
+### ⛔ Avoid (public repos) · ☢️ Use with extreme caution (private repos)
+
+> **In private repositories, this trigger is ☢️ Use with extreme caution.** There are no outside contributors, so the "Approve and run workflows" button — the primary driver of the ⛔ rating — does not apply. However, the trigger is elevated to ☢️ (rather than fully recommended) for defense-in-depth and to maintain consistent practices across repositories.
 
 **The approve-and-run gate is what makes this catastrophic, not what protects from it.** The approval requirement is on by policy and external contributors must work from forks — so every `pull_request` workflow on every external PR presents the "Approve and run workflows" button, every day. That is alert fatigue by construction: the click-rate trends toward 100%, **the UI does not show what is about to execute or give guidance for what to review before approving**, and the button label conceals what is actually being authorized ("run safely-defined workflows" reads as "rubber-stamp this routine PR," not "grant this stranger's code access to every secret"). **The gate is also one-shot per click — approving *all* gated workflow runs in that batch at once, with no granular visibility or selection of which individual workflows are safe to run for this specific PR.** Click once and every gated workflow on the PR fires. **gh-aw's safe-outputs gate, output sanitization, and `staged: true` exist largely *because* of this trigger's footgun shape.**
 

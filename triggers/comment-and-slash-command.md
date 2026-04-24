@@ -6,7 +6,9 @@ title: "issue_comment and slash_command"
 
 # `issue_comment` and `slash_command:`
 
-### ⚠️ Use with caution
+### ⚠️ Use with caution (public repos) · ✅ Recommended (private repos)
+
+> **In private repositories, this trigger is ✅ Recommended.** All actors in a private repo have been granted access by the organization — there are no anonymous or untrusted contributors. This eliminates the privilege-escalation and spamming risks that drive the ⚠️ classification in public repos. The concurrency/idempotency challenges from the broad event subscription are substantially less problematic in private repos and can be accepted.
 
 **The "no approval gate" loophole.** `issue_comment` does **NOT** trigger the "Approve and run workflows" gate, even when fired from a comment on a fork PR. A fork contributor can fire any `issue_comment`-listening workflow on their own PR with no maintainer interaction. This is the canonical reason `slash_command:` workflows have a much wider invocation surface than they appear — `slash_command:` subscribes to `issue_comment` by default.
 
